@@ -1,3 +1,19 @@
+// src/pages/Home.jsx
+import { Link } from 'react-router-dom';
+
 export default function Home() {
-  return <div className="p-4 text-xl">Bem-vindo, Analista!</div>;
+  return (
+    <div style={{ padding: '1rem' }}>
+      <h1>Bem-vindo, Analista!</h1>
+      <ul style={{ marginTop: '1rem', lineHeight: '2rem' }}>
+        <li><Link to="/tasks">Tarefas</Link></li>
+        <li><Link to="/activities">Atividades</Link></li>
+        <li><Link to="/employees">Colaboradores</Link></li>
+        <li><Link to="/trainings">Treinamentos</Link></li>
+        <li><Link to="/health-examinations">Exames de Saúde</Link></li>
+        <li><Link to="/users">Usuários</Link></li>
+      </ul>
+    </div>
+  );
 }
+
