@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
-  const [registration, setRegistration] = useState('');
-  const [password, setPassword] = useState('');
+  const [registration, setRegistration] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -12,17 +12,20 @@ export default function Login() {
     e.preventDefault();
     setError(null);
     try {
-      const response = await axios.post(import.meta.env.VITE_BACKEND_API, {
-        registration,
-        password,
-      });
-      console.log('Resposta da API:', response);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_API}/users/login`,
+        {
+          registration,
+          password,
+        }
+      );
+      console.log("Resposta da API:", response);
       const { token } = response.data;
-      localStorage.setItem('token', token);
-      navigate('/');
+      localStorage.setItem("token", token);
+      navigate("/");
     } catch (err) {
-      console.error('Erro ao autenticar:', err);
-      setError('Usuário ou senha inválidos');
+      console.error("Erro ao autenticar:", err);
+      setError("Usuário ou senha inválidos");
     }
   };
 
@@ -45,9 +48,7 @@ export default function Login() {
           required
         />
         {error && <p>{error}</p>}
-        <button type="submit">
-          Entrar
-        </button>
+        <button type="submit">Entrar</button>
       </form>
     </div>
   );
