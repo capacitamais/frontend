@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import AccessDenied from "./pages/AccessDenied";
 import NotFound from "./pages/NotFound";
 import PrivateRoute from "./utils/PrivateRoute";
-import Layout from "./components/Layout";
+import Layout from "./components/Layout/Layout";
 import Profile from "./pages/Profile";
 import Tasks from "./pages/Tasks";
 import Activities from "./pages/Activities";

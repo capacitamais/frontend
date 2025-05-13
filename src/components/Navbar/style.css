@@ -1,0 +1,25 @@
+/* NavbarBtn.css */
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border: none;
+    background-color: lightblue;
+    text-decoration: none;
+  }
+  
+  /* Para telas maiores (ex: tablets - largura mínima de 768px) */
+  @media (min-width: 768px) {
+    .navbar {
+      padding: 14px 22px;
+    }
+  }
+  
+  /* Para telas ainda maiores (ex: desktops - largura mínima de 1200px) */
+  @media (min-width: 1200px) {
+    .navbar {
+      padding: 18px 26px;
+    }
+  }

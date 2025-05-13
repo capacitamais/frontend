@@ -1,0 +1,39 @@
+/* NavbarBtn.css */
+
+.navbar-btn {
+    padding: 5px 8px;
+    font-size: small;
+    margin-right: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightblue;
+    color: #f0f0f0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* Adicionando uma transição suave */
+  }
+  
+  .navbar-btn:hover {
+    background-color: #ceedf2;
+    color:white;
+  }
+  
+  /* Para telas maiores (ex: tablets - largura mínima de 768px) */
+  @media (min-width: 768px) {
+    .navbar-btn {
+      padding: 7px 12px;
+      font-size: medium;
+      margin-right: 15px;
+    }
+  }
+  
+  /* Para telas ainda maiores (ex: desktops - largura mínima de 1200px) */
+  @media (min-width: 1200px) {
+    .navbar-btn {
+      padding: 10px 16px;
+      font-size: large;
+      margin-right: 20px;
+    }
+  }
+  
+  /* Você pode adicionar mais media queries para outros tamanhos */
