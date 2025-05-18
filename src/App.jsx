@@ -12,6 +12,7 @@ import Tasks from "./pages/Tasks";
 import Activities from "./pages/Activities";
 import Employees from "./pages/Employees";
 import Trainings from "./pages/Trainings";
+import Training from "./pages/Training";
 import HealthExaminations from "./pages/HealthExaminations";
 import Users from "./pages/Users";
 
@@ -23,7 +24,7 @@ export default function App() {
         <Route path="/" element={<CheckAuth />} />
         <Route path="/login" element={<Login />} />
         <Route path="/access-denied" element={<AccessDenied />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/*" element={<NotFound />} />
 
         {/* Rotas dentro do layout principal */}
         <Route element={<Layout />}>
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="/activities" element={<Activities />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/trainings" element={<Trainings />} />
+          <Route path="/trainings/:id" element={<Training />} />
           <Route path="/health-examinations" element={<HealthExaminations />} />
           <Route path="/users" element={<Users />} />
         </Route>

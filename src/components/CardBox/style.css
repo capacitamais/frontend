@@ -1,0 +1,60 @@
+.cardBox {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 8px;
+  border-radius: 8px;
+  background-color: #eef6fa;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.cardBox:hover {
+  background-color: #d7ecf4;
+}
+
+/* Texto da tag */
+.cardBox .tag {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* Texto da descrição */
+.cardBox .description {
+  font-size: 13px;
+}
+
+/* Responsivo: tablet */
+@media (min-width: 768px) {
+  .cardBox {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .cardBox .tag {
+    font-size: 16px;
+  }
+
+  .cardBox .description {
+    font-size: 15px;
+  }
+}
+
+/* Responsivo: desktop */
+@media (min-width: 1200px) {
+  .cardBox {
+    padding: 20px;
+    margin: 12px;
+  }
+
+  .cardBox .tag {
+    font-size: 18px;
+  }
+
+  .cardBox .description {
+    font-size: 17px;
+  }
+}
