@@ -12,6 +12,7 @@ import Tasks from "./pages/Tasks";
 import Activities from "./pages/Activities";
 import Employees from "./pages/Employees";
 import Trainings from "./pages/Trainings";
+import TrainingForm from "./pages/TrainingForm";
 import Training from "./pages/Training";
 import HealthExaminations from "./pages/HealthExaminations";
 import Users from "./pages/Users";
@@ -56,6 +57,14 @@ export default function App() {
           <Route path="/activities" element={<Activities />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/trainings" element={<Trainings />} />
+          <Route
+            path="/trainings/new"
+            element={
+              <PrivateRoute requiredRole="analyst">
+                <TrainingForm />
+              </PrivateRoute>
+            }
+          />
           <Route path="/trainings/:id" element={<Training />} />
           <Route path="/health-examinations" element={<HealthExaminations />} />
           <Route path="/users" element={<Users />} />
