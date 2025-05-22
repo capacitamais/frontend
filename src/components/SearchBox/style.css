@@ -1,0 +1,98 @@
+.searchBox {
+  display: flex;
+  padding: 10px;
+  margin: 8px;
+  border-radius: 8px;
+  background-color: #eef6fa;
+  color: #333;
+  text-decoration: none; /* Manter se for um link, caso contrário, remover */
+  transition: background-color 0.3s ease;
+}
+
+.searchBox:hover {
+  background-color: #d7ecf4;
+}
+
+/* Responsivo: tablet */
+@media (min-width: 768px) {
+  .searchBox {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+  }
+}
+
+/* Responsivo: desktop */
+@media (min-width: 1200px) {
+  .searchBox {
+    padding: 20px;
+    margin: 12px;
+  }
+}
+
+.searchBox input {
+  /* Alterado de .searchBoxInput para .searchBox input para ser mais específico do elemento no componente */
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #cce7f5; /* Cor da borda mais suave, similar ao background do CardBox */
+  border-radius: 5px; /* Bordas arredondadas para combinar */
+  margin-right: 8px;
+  font-size: small;
+  background-color: #ffffff; /* Fundo branco para o input */
+  color: #333;
+}
+
+.searchBox input:focus {
+  outline: none;
+  border-color: #9cd4ed; /* Uma cor mais clara para o foco, harmonizando com a paleta */
+  box-shadow: 0 0 5px rgba(156, 212, 237, 0.5); /* Sombra mais suave */
+}
+
+@media (min-width: 768px) {
+  .searchBox input {
+    font-size: medium;
+  }
+}
+
+@media (min-width: 1200px) {
+  .searchBox input {
+    font-size: large;
+  }
+}
+
+.searchBox button {
+  /* Estilos do botão para harmonizar com o CardBox */
+  background-color: #9cd4ed; /* Cor de fundo do botão, pegando um tom da paleta */
+  color: #ffffff; /* Texto branco para o botão */
+  border: none; /* Remover borda padrão */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 8px 15px; /* Espaçamento interno */
+  cursor: pointer; /* Indica que é clicável */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transição para hover e active */
+  font-size: small; /* Tamanho da fonte padrão */
+  font-weight: bold; /* Deixar o texto do botão em negrito */
+}
+
+.searchBox button:hover {
+  background-color: #7abeda; /* Um tom mais escuro no hover */
+  transform: translateY(-1px); /* Pequeno efeito de levantamento */
+}
+
+.searchBox button:active {
+  background-color: #5ea1c5; /* Tom ainda mais escuro ao clicar */
+  transform: translateY(0); /* Volta à posição original */
+}
+
+@media (min-width: 768px) {
+  .searchBox button {
+    font-size: medium;
+    padding: 10px 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .searchBox button {
+    font-size: large;
+    padding: 12px 25px;
+  }
+}

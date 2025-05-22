@@ -1,0 +1,28 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 5px;
+    border: none;
+    color: #f0f0f0;
+    background-color: lightblue;
+    text-decoration: none;
+    font-size: x-small;
+  }
+  
+  /* Para telas maiores (ex: tablets - largura mínima de 768px) */
+  @media (min-width: 768px) {
+    .footer {
+      padding: 8px 8px;
+      font-size: small;
+    }
+  }
+  
+  /* Para telas ainda maiores (ex: desktops - largura mínima de 1200px) */
+  @media (min-width: 1200px) {
+    .footer {
+      padding: 10px 10px;
+      font-size: medium;
+    }
+  }

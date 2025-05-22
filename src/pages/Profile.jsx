@@ -14,7 +14,6 @@ export default function Profile() {
   return (
     <div style={{ padding: '2rem' }}>
       <h1>Perfil do Usuário</h1>
-      <p><strong>ID:</strong> {user.id}</p>
       <p><strong>Nome:</strong> {user.name}</p>
       <p><strong>Função:</strong> {user.role}</p>
 

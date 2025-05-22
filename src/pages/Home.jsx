@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
-    <div style={{ padding: '1rem' }}>
-      <h1>Bem-vindo, Analista!</h1>
-      <ul style={{ marginTop: '1rem', lineHeight: '2rem' }}>
+    <div>
+      <h1>Capacita +</h1>
+      <h3>Gestão de treinamentos</h3>
+      <ul>
         <li><Link to="/tasks">Tarefas</Link></li>
         <li><Link to="/activities">Atividades</Link></li>
         <li><Link to="/employees">Colaboradores</Link></li>
