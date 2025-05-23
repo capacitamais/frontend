@@ -15,6 +15,8 @@ import Trainings from "./pages/Trainings";
 import TrainingForm from "./pages/TrainingForm";
 import Training from "./pages/Training";
 import HealthExaminations from "./pages/HealthExaminations";
+import HealthExaminationForm from "./pages/HealthExaminationForm";
+import HealthExamination from "./pages/HealthExamination";
 import Users from "./pages/Users";
 
 export default function App() {
@@ -58,7 +60,7 @@ export default function App() {
           <Route path="/employees" element={<Employees />} />
           <Route path="/trainings" element={<Trainings />} />
           <Route
-            path="/trainings/new"
+            path="/trainings/form"
             element={
               <PrivateRoute requiredRole="analyst">
                 <TrainingForm />
@@ -67,6 +69,15 @@ export default function App() {
           />
           <Route path="/trainings/:id" element={<Training />} />
           <Route path="/health-examinations" element={<HealthExaminations />} />
+          <Route
+            path="/health-examinations/form"
+            element={
+              <PrivateRoute requiredRole="analyst">
+                <HealthExaminationForm />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/health-examinations/:id" element={<HealthExamination />} />
           <Route path="/users" element={<Users />} />
         </Route>
       </Routes>
