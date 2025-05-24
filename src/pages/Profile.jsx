@@ -1,11 +1,15 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 export default function Profile() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const user = useAuth();
 
-  // Você pode buscar mais dados do usuário via API aqui, se necessário
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  }
 
   if (!user || user.id !== id) {
     return <p>Você não tem permissão para ver este perfil.</p>;
@@ -16,8 +20,10 @@ export default function Profile() {
       <h1>Perfil do Usuário</h1>
       <p><strong>Nome:</strong> {user.name}</p>
       <p><strong>Função:</strong> {user.role}</p>
-
-      {/* Futuro: adicionar botões para editar ou excluir conta */}
+      <button onClick={handleLogout}>Sair</button>
+      <button onClick={() => navigate(-1)}>
+        Voltar
+      </button>
     </div>
   );
 }

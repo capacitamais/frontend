@@ -1,30 +1,40 @@
-export default function Employees() {
-    /**
-     *Função buscar todos os elemntos
-     *Função buscar elemento pelo id ao buscar pelo id, mostrar apenas o elemento pesquisado na lista 
-     *Ao clicar sobre um item da lista abrir formulário para editá-lo
-    */
+import { useEffect, useState } from "react";
+import api from "../hooks/api";
+import AddCard from "../components/AddCard/AddCard";
+import SearchBox from "../components/SearchBox/SearchBox";
+import Table from "../components/Table/Table";
 
-    return (
-        <>
-            <div className="new-record">
-                <div className="tag">Adicionar NomeEntidade</div>
-                <button type="button">Adicionar</button>
-            </div>
-            <div className="search-record">
-                <div className="tag">Buscar NomeEntidade</div>
-                <input/>
-                <button type="button">Buscar</button>
-            </div>
-            <div className="list">
-                <div className="tag">Conteúdo</div>
-                <ul>
-                    <li>Registro da lista</li>
-                    <li>Registro da lista</li>
-                    <li>Registro da lista</li>
-                </ul>
-            </div>
-        </>
-    )
-  }
-  
+export default function Employees() {
+  const [employees, setEmployees] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const fetchEmployees = (searchFilter = "") =>{
+    api.get(`/employees?nameOrRegistration=${searchFilter}`).then((response) => {
+        const mappedEmployees = response.data.map((employee) => ({
+            id: employee._id,
+            name: employee.name,
+            registration: employee.registration,
+        }));
+        setEmployees(mappedEmployees);
+
+    })
+    .catch((error) => console.error("Erro ao buscar os colaboradores:", error))
+  };
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+    fetchEmployees(term);
+  };
+
+  return (
+    <>
+      <AddCard to="/employees/form" label="Novo Colaborador" />
+      <SearchBox onSearch={handleSearch} />
+      <Table path="/employees" data={employees} label="Colaboradores"/>
+    </>
+  );
+}

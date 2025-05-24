@@ -38,8 +38,7 @@ export default function Trainings() {
     <>
       <AddCard to="/trainings/form" label="Novo Treinamento" />
       <SearchBox onSearch={handleSearch}/>
-      <h1>Treinamentos</h1>
-      <Table path="/trainings" data={trainings} />
+      <Table path="/trainings" data={trainings} label="Treinamentos"/>
     </>
   );
 }

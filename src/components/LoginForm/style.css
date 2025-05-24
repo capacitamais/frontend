@@ -1,0 +1,112 @@
+/* Login.css */
+
+.login-container {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  min-height: 100vh; /* Ocupa a altura total da viewport */
+  background-color: #f0f2f5; /* Cor de fundo suave */
+  padding: 1rem; /* Espaçamento interno */
+  box-sizing: border-box; /* Inclui padding na largura/altura total */
+}
+
+.login-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaçamento entre os elementos do formulário */
+  width: 100%;
+  max-width: 380px; /* Largura máxima para o formulário */
+  box-sizing: border-box;
+}
+
+.login-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+
+.login-input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #4CAF50; /* Cor da borda ao focar */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3); /* Sombra ao focar */
+}
+
+.login-error {
+  color: #d9534f; /* Cor vermelha para mensagens de erro */
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: -5px; /* Ajusta o espaçamento acima do erro */
+}
+
+.login-button {
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: lightblue; /* Cor do NavBarBtn */
+  color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #ceedf2; /* Cor de hover do NavBarBtn */
+  color: white;
+}
+
+/* Responsivo: tablet (min-width: 768px) */
+@media (min-width: 768px) {
+  .login-form {
+    padding: 30px;
+    gap: 20px;
+  }
+
+  .login-title {
+    font-size: 2.2rem;
+  }
+
+  .login-input {
+    padding: 14px;
+    font-size: 1.1rem;
+  }
+
+  .login-button {
+    padding: 14px 25px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Responsivo: desktop (min-width: 1200px) */
+@media (min-width: 1200px) {
+  .login-form {
+    padding: 40px;
+    max-width: 450px;
+  }
+
+  .login-title {
+    font-size: 2.5rem;
+  }
+
+  .login-input {
+    padding: 16px;
+    font-size: 1.2rem;
+  }
+
+  .login-button {
+    padding: 16px 30px;
+    font-size: 1.3rem;
+  }
+}
