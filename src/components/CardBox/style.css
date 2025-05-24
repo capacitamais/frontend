@@ -15,7 +15,7 @@
 }
 
 /* Texto da tag */
-.cardBox .tag {
+.cardBox .tag .name .title {
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 6px;
@@ -34,7 +34,7 @@
     padding: 15px;
   }
 
-  .cardBox .tag {
+  .cardBox .tag .name .title {
     font-size: 16px;
   }
 
@@ -50,7 +50,7 @@
     margin: 12px;
   }
 
-  .cardBox .tag {
+  .cardBox .tag .name .title {
     font-size: 18px;
   }
 
