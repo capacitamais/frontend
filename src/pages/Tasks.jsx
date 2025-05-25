@@ -33,9 +33,9 @@ export default function Tasks() {
 
   return (
     <>
-      <AddCard to="/tasks/form" label="Nova Tarefa" />
+      <AddCard to="/tasks/add-form" label="Nova Tarefa" />
       <SearchBox onSearch={handleSearch} />
-      <Table path="/tasks" data={tasks} label="Treinamentos"/>
+      <Table path="/tasks" data={tasks} label="Tarefas"/>
     </>
   );
 }

@@ -33,7 +33,7 @@ export default function Activities() {
 
   return (
     <>
-      <AddCard to="/activities/form" label="Nova Atividade" />
+      <AddCard to="/activities/add-form" label="Nova Atividade" />
       <SearchBox onSearch={handleSearch} />
       <Table path="/activities" data={activities} label="Atividades" />
     </>

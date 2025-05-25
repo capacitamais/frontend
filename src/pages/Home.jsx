@@ -30,7 +30,7 @@ export default function Home() {
           <Link to="/users">Usuários</Link>
         </li>
         <li>
-          <Link>Importar tabela de treinamentos realizados</Link>
+          <Link>Importar Treinamentos</Link>
         </li>
       </ul>
     </div>

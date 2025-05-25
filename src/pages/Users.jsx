@@ -30,7 +30,7 @@ export default function Users() {
 
   return (
     <>
-      <AddCard to="/users/form" label="Novo Usuário" />
+      <AddCard to="/users/add-form" label="Novo Usuário" />
       <SearchBox onSearch={handleSearch} />
       <Table path="/users" data={users} label="Usuários" />
     </>

@@ -32,7 +32,7 @@ export default function HealthExaminations() {
 
   return (
     <>
-      <AddCard to="/health-examinations/form" label="Novo Exame" />
+      <AddCard to="/health-examinations/add-form" label="Novo Exame" />
       <SearchBox onSearch={handleSearch} />
       <Table path="/health-examinations" data={examinations} label="Exames Ocupacionais"/>
     </>
