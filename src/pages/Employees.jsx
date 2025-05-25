@@ -32,7 +32,7 @@ export default function Employees() {
 
   return (
     <>
-      <AddCard to="/employees/form" label="Novo Colaborador" />
+      <AddCard to="/employees/add-form" label="Novo Colaborador" />
       <SearchBox onSearch={handleSearch} />
       <Table path="/employees" data={employees} label="Colaboradores"/>
     </>
