@@ -20,7 +20,7 @@ export default function UserAddForm() {
   ];
 
   const handleSubmitSuccess = () => {
-    alert('User saved successfully!');
+    alert('Usuário criado com sucesso!');
     navigate('/users');
   };
 

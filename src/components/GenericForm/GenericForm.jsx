@@ -90,7 +90,7 @@ export default function GenericForm({ entityName, fields, onSubmitSuccess, initi
 
   return (
     <div className="generic-form-container">
-      <h2>{isEditing ? `Editar ${entityName}` : `Adicionar ${entityName}`}</h2>
+      <h2>{isEditing ? `Editar` : `Adicionar`}</h2>
       <form onSubmit={handleSubmit} className="generic-form">
         {fields.map((field) => (
           <div className="form-group" key={field.name}>
