@@ -12,8 +12,8 @@ export default function AddCard({ to, label = "Adicionar" }) {
 
   return (
     <div className="add-card" onClick={handleClick}>
-      <FaPlus size={20} />
       <span>{label}</span>
+      <FaPlus size={20} />
     </div>
   );
 }

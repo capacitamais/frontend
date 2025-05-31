@@ -10,7 +10,10 @@ export default function User() {
   useEffect(() => {
     api
       .get(`/users/${id}`)
-      .then((response) => setUser(response.data))
+      .then((response) => {
+        console.log("Resposta completa:", response.data);
+        setUser(response.data);
+      })
       .catch((error) => console.error("Erro ao buscar o usuário:", error));
   }, [id]);
 
@@ -22,7 +25,7 @@ export default function User() {
 
   return (
     <>
-      <h2>{`Nome: ${user}`}</h2>
+      <h2>{`Nome: ${user.name}`}</h2>
       <h3>{user.role}</h3>
       <button onClick={() => navigate(-1)}>Voltar</button>
     </>

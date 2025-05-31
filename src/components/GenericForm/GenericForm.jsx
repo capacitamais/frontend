@@ -1,97 +1,89 @@
-// src/components/GenericForm/GenericForm.jsx
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../hooks/api';
 import './style.css';
 
-export default function GenericForm({ entityName, fields, onSubmitSuccess, initialData = {}, isEditing = false }) {
-  const [formData, setFormData] = useState(initialData);
+// Remove initialData como estado interno primário para campos simples
+// Agora o componente recebe `formData` e `onFormChange` para os campos básicos
+export default function GenericForm({
+  entityName,
+  fields,
+  onSubmit, // Mudança: agora recebe uma função `onSubmit`
+  apiUrl,
+  isEditing = false,
+  children,
+  currentFormData, // Nova prop: o formData atual do componente pai
+  onFieldChange, // Nova prop: função para atualizar campos simples no pai
+}) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { id } = useParams(); // Para edição, se aplicável
+  const { id } = useParams();
 
-  const apiUrl = import.meta.env.VITE_BACKEND_API;
-
+  // useEffect para carregar dados para edição se `currentFormData` não foi preenchido pelo pai
   useEffect(() => {
-    if (isEditing && id && !Object.keys(initialData).length) {
-      // Se for edição e initialData não foi fornecido, busca os dados
+    // Se está em modo de edição, tem um ID, e o pai não preencheu os dados iniciais
+    if (isEditing && id && !Object.keys(currentFormData || {}).length) {
       const fetchEntityData = async () => {
         setLoading(true);
         try {
-          // Usa 'api' em vez de 'axios'
-          const response = await api.get(`/${entityName}/${id}`);
-          setFormData(response.data);
+          const response = await api.get(`${apiUrl}/${id}`);
+          // Chame a função de mudança de campo no pai para atualizar os dados
+          // Isso é importante para que o pai seja o dono dos dados
+          for (const key in response.data) {
+            onFieldChange({ target: { name: key, value: response.data[key] } });
+          }
         } catch (err) {
-          setError('Falha ao carregar os dados.');
-          console.error('Erro ao buscar dados da entidade:', err);
+          setError('Failed to load entity data.');
+          console.error('Error fetching entity data:', err);
         } finally {
           setLoading(false);
         }
       };
       fetchEntityData();
     }
-  }, [isEditing, id, apiUrl, initialData]);
+  }, [isEditing, id, apiUrl, currentFormData, onFieldChange]); // Depende de onFieldChange também
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-
-    if (type === 'checkbox') {
-      setFormData(prevData => ({
-        ...prevData,
-        [name]: checked
-      }));
-    } else if (name === 'activities' || name === 'employees') {
-        // Se o campo for um array (e.g., activities, employees para Task)
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value.split(',').map(item => item.trim()) // Assume entrada como string separada por vírgulas
-        }));
-    }
-    else {
-      setFormData(prevData => ({
-        ...prevData,
-        [name]: value
-      }));
-    }
+  const handleInternalChange = (e) => {
+    // Apenas repassa a mudança para o pai
+    onFieldChange(e);
   };
 
-  const handleSubmit = async (e) => {
+  const handleInternalSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
     try {
-      if (isEditing) {
-        await api.put(`${apiUrl}/${entityName}/${id}`, formData);
-      } else {
-        await api.post(`${apiUrl}/${entityName}`, formData);
-      }
-      if (onSubmitSuccess) {
-        onSubmitSuccess();
-      } else {
-        navigate(`/${entityName.toLowerCase()}`);
-      }
+      // O `onSubmit` agora é passado como prop e já tem a lógica de POST/PUT
+      await onSubmit(currentFormData); // Envia o formData completo do pai
+
+      // Não há mais navigate aqui, o pai decide o que fazer após o sucesso
     } catch (err) {
-      setError(`Falha ao criar ${entityName}. Favor tentar novamente`);
-      console.error(`Erro ao salvar ${entityName}:`, err);
+      setError(`Failed to save ${entityName}. Details: ${err.response?.data?.error || err.message}`);
+      console.error(`Error saving ${entityName}:`, err.response?.data || err);
     } finally {
       setLoading(false);
     }
   };
 
-  if (loading && isEditing && !Object.keys(initialData).length) {
-    return <div className="loading-message">Carregando {entityName}...</div>;
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
+  if (loading && isEditing && !Object.keys(currentFormData || {}).length) {
+    return <div className="loading-message">Loading {entityName} data...</div>;
   }
 
-  if (error && isEditing && !Object.keys(initialData).length) {
+  if (error && isEditing && !Object.keys(currentFormData || {}).length) {
     return <div className="error-message">{error}</div>;
   }
 
   return (
     <div className="generic-form-container">
-      <h2>{isEditing ? `Editar` : `Adicionar`}</h2>
-      <form onSubmit={handleSubmit} className="generic-form">
+      <h2>{isEditing ? `Editar ${entityName}` : `Criar ${entityName}`}</h2>
+      <form onSubmit={handleInternalSubmit} className="generic-form">
+        {error && <p className="error-message">{error}</p>}
         {fields.map((field) => (
           <div className="form-group" key={field.name}>
             <label htmlFor={field.name}>{field.label}:</label>
@@ -99,20 +91,20 @@ export default function GenericForm({ entityName, fields, onSubmitSuccess, initi
               <textarea
                 id={field.name}
                 name={field.name}
-                value={formData[field.name] || ''}
-                onChange={handleChange}
+                value={currentFormData[field.name] || ''} // Usa currentFormData
+                onChange={handleInternalChange}
                 required={field.required}
               />
             ) : field.type === 'select' ? (
               <select
                 id={field.name}
                 name={field.name}
-                value={formData[field.name] || ''}
-                onChange={handleChange}
+                value={currentFormData[field.name] || ''} // Usa currentFormData
+                onChange={handleInternalChange}
                 required={field.required}
               >
                 <option value="">Selecione um {field.label}</option>
-                {field.options.map((option) => (
+                {field.options && field.options.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
                   </option>
@@ -123,17 +115,24 @@ export default function GenericForm({ entityName, fields, onSubmitSuccess, initi
                 type={field.type}
                 id={field.name}
                 name={field.name}
-                value={formData[field.name] || ''}
-                onChange={handleChange}
+                value={currentFormData[field.name] || ''} // Usa currentFormData
+                onChange={handleInternalChange}
                 required={field.required}
               />
             )}
           </div>
         ))}
-        <button type="submit" disabled={loading}>
-          {loading ? 'Salvando...' : 'Salvar'}
-        </button>
-        {error && <p className="error-message">{error}</p>}
+
+        {children} {/* Renderiza os children */}
+
+        <div className="form-actions"> 
+          <button type="button" onClick={handleCancel} className="cancel-button">
+            Cancelar
+          </button>
+          <button type="submit" disabled={loading} className="submit-button">
+            {loading ? 'Saving...' : 'Save'}
+          </button>
+        </div>
       </form>
     </div>
   );

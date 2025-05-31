@@ -1,21 +1,45 @@
 .add-card {
   display: flex;
+  flex-direction: row; /* Mantém ícone e texto lado a lado */
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 20px;
-  border: 2px dashed #88c1e2;
+  gap: 8px; /* Espaço entre ícone e texto */
+  padding: 10px;
+  margin: 8px;
   border-radius: 8px;
-  background-color: #f0faff;
-  color: #0077b6;
-  cursor: pointer;
+  background-color: #eef6fa;
+  color: #333;
+  text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-bottom: 20px;
-  text-align: center;
+  cursor: pointer;
   font-weight: 500;
+  text-align: center;
 }
 
 .add-card:hover {
-  background-color: #d6f0fb;
+  background-color: #d7ecf4;
   transform: scale(1.02);
+}
+
+/* Responsivo: tablet */
+@media (min-width: 768px) {
+  .add-card {
+    padding: 15px;
+  }
+
+  .add-card span {
+    font-size: 16px;
+  }
+}
+
+/* Responsivo: desktop */
+@media (min-width: 1200px) {
+  .add-card {
+    padding: 20px;
+    margin: 12px;
+  }
+
+  .add-card span {
+    font-size: 18px;
+  }
 }
