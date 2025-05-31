@@ -9,22 +9,22 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Layout from "./components/Layout/Layout";
 import Profile from "./pages/Profile";
 import Tasks from "./pages/Tasks";
-import TaskAddForm from "./pages/TaskAddForm";
+import TaskForm from "./pages/TaskForm";
 import Task from "./pages/Task";
 import Activities from "./pages/Activities";
-import ActivityAddForm from "./pages/ActivityAddForm";
+import ActivityForm from "./pages/ActivityForm";
 import Activity from "./pages/Activity";
 import Employees from "./pages/Employees";
-import EmployeeAddForm from "./pages/EmployeeAddForm";
+import EmployeeForm from "./pages/EmployeeForm";
 import Employee from "./pages/Employee";
 import Trainings from "./pages/Trainings";
-import TrainingAddForm from "./pages/TrainingAddForm";
+import TrainingForm from "./pages/TrainingForm";
 import Training from "./pages/Training";
 import HealthExaminations from "./pages/HealthExaminations";
-import HealthExaminationAddForm from "./pages/HealthExaminationAddForm";
+import HealthExaminationForm from "./pages/HealthExaminationForm";
 import HealthExamination from "./pages/HealthExamination";
 import Users from "./pages/Users";
-import UserAddForm from "./pages/UserAddForm";
+import UserForm from "./pages/UserForm";
 import User from "./pages/User";
 
 export default function App() {
@@ -68,7 +68,7 @@ export default function App() {
             path="/tasks/add-form"
             element={
               <PrivateRoute requiredRole="analyst">
-                <TaskAddForm />
+                <TaskForm />
               </PrivateRoute>
             }
           />
@@ -78,7 +78,7 @@ export default function App() {
             path="/activities/add-form"
             element={
               <PrivateRoute requiredRole="analyst">
-                <ActivityAddForm />
+                <ActivityForm />
               </PrivateRoute>
             }
           />
@@ -88,7 +88,7 @@ export default function App() {
             path="/employees/add-form"
             element={
               <PrivateRoute requiredRole="analyst">
-                <EmployeeAddForm/>
+                <EmployeeForm/>
               </PrivateRoute>
             }
           />
@@ -98,7 +98,7 @@ export default function App() {
             path="/trainings/add-form"
             element={
               <PrivateRoute requiredRole="analyst">
-                <TrainingAddForm />
+                <TrainingForm />
               </PrivateRoute>
             }
           />
@@ -108,7 +108,7 @@ export default function App() {
             path="/health-examinations/add-form"
             element={
               <PrivateRoute requiredRole="analyst">
-                <HealthExaminationAddForm />
+                <HealthExaminationForm />
               </PrivateRoute>
             }
           />
@@ -118,7 +118,7 @@ export default function App() {
             path="/users/add-form"
             element={
               <PrivateRoute requiredRole="analyst">
-                <UserAddForm />
+                <UserForm />
               </PrivateRoute>
             }
           />
