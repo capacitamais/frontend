@@ -21,9 +21,9 @@ export default function SearchBox({ onSearch }) { // Adicionado o { após functi
         placeholder="Procurar..."
         value={searchTerm}
         onChange={handleInputChange}
-        className="searchBoxInput" // Mantenha esta classe se quiser usar .searchBoxInput no CSS
+        className="searchBoxInput"
       />
-      <button onClick={handleSearch}>Buscar</button> {/* Removido value="->" pois não é necessário para o botão */ }
+      <button onClick={handleSearch}>Buscar</button>
     </div>
   );
 }

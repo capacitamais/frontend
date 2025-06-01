@@ -1,4 +1,4 @@
-import { useState } from "react"; // Importa useState
+import { useState, useEffect } from "react"; // Importa useState
 import GenericForm from "../components/GenericForm/GenericForm";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../hooks/api";
@@ -12,6 +12,9 @@ export default function EmployeeForm() {
     registration: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const handleFormFieldChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -19,6 +22,30 @@ export default function EmployeeForm() {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+      const fetchEmployee = async () => {
+        if (!id) return;
+        try {
+          setLoading(true);
+          const response = await api.get(`/employees/${id}`);
+          const employee = response.data;
+  
+          setFormData({
+            name: employee.name || "",
+            registration: employee.registration || "",
+          });
+  
+          setLoading(false);
+        } catch (err) {
+          console.error("Erro ao carregar colaborador:", err);
+          setError("Erro ao carregar dados de colaborador.");
+          setLoading(false);
+        }
+      };
+  
+      fetchEmployee();
+    }, [id]);
 
   const handleSubmit = async (dataToSubmit) => {
     try {
@@ -50,6 +77,9 @@ export default function EmployeeForm() {
       required: true,
     },
   ];
+
+  if (loading) return <p>Carregando colaborador...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <GenericForm

@@ -13,7 +13,7 @@ export default function Employees() {
         const mappedEmployees = response.data.map((employee) => ({
             id: employee._id,
             name: employee.name,
-            registration: employee.registration,
+            tag: employee.registration,
         }));
         setEmployees(mappedEmployees);
 

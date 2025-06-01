@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import EditBtn from "../components/EditBtn/EditBtn";
 import api from "../hooks/api";
 
 export default function Activity() {
@@ -19,6 +20,8 @@ export default function Activity() {
   return (
     <>
       <h2>{activity.name}</h2>
+      <p>{activity.description}</p>
+      <EditBtn to={`/activities/${id}/edit`} />
       <button onClick={() => navigate(-1)}>
         Voltar
       </button>

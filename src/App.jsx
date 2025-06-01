@@ -73,6 +73,14 @@ export default function App() {
             }
           />
           <Route path="/tasks/:id" element={<Task />} />
+          <Route
+            path="/tasks/:id/edit"
+            element={
+              <PrivateRoute requiredRole="analyst">
+                <TaskForm />
+              </PrivateRoute>
+            }
+          />
           <Route path="/activities" element={<Activities />} />
           <Route
             path="/activities/add-form"
@@ -83,6 +91,14 @@ export default function App() {
             }
           />
           <Route path="/activities/:id" element={<Activity />} />
+          <Route
+            path="/activities/:id/edit"
+            element={
+              <PrivateRoute requiredRole="analyst">
+                <ActivityForm />
+              </PrivateRoute>
+            }
+          />
           <Route path="/employees" element={<Employees />} />
           <Route
             path="/employees/add-form"
@@ -93,6 +109,14 @@ export default function App() {
             }
           />
           <Route path="/employees/:id" element={<Employee />} />
+          <Route
+            path="/employees/:id/edit"
+            element={
+              <PrivateRoute requiredRole="analyst">
+                <EmployeeForm />
+              </PrivateRoute>
+            }
+          />
           <Route path="/trainings" element={<Trainings />} />
           <Route
             path="/trainings/add-form"
@@ -103,6 +127,14 @@ export default function App() {
             }
           />
           <Route path="/trainings/:id" element={<Training />} />
+          <Route
+            path="/trainings/:id/edit"
+            element={
+              <PrivateRoute requiredRole="analyst">
+                <TrainingForm />
+              </PrivateRoute>
+            }
+          />
           <Route path="/health-examinations" element={<HealthExaminations />} />
           <Route
             path="/health-examinations/add-form"
@@ -113,6 +145,14 @@ export default function App() {
             }
           />
           <Route path="/health-examinations/:id" element={<HealthExamination />} />
+          <Route
+            path="/health-examinations/:id/edit"
+            element={
+              <PrivateRoute requiredRole="analyst">
+                <HealthExaminationForm />
+              </PrivateRoute>
+            }
+          />
           <Route path="/users" element={<Users />} />
           <Route
             path="/users/add-form"
@@ -123,6 +163,14 @@ export default function App() {
             }
           />
           <Route path="/users/:id" element={<User />} />
+          <Route
+            path="/users/:id/edit"
+            element={
+              <PrivateRoute requiredRole="analyst">
+                <UserForm />
+              </PrivateRoute>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,6 +1,7 @@
 // pages/Training.jsx
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import EditBtn from "../components/EditBtn/EditBtn";
 import api from "../hooks/api";
 
 export default function Training() {
@@ -32,6 +33,7 @@ export default function Training() {
       <p>
         <strong>Ativo:</strong> {training.isActive ? "Sim" : "Não"}
       </p>
+      <EditBtn to={`/trainings/${id}/edit`} />
       <button onClick={() => navigate(-1)}>
         Voltar
       </button>
