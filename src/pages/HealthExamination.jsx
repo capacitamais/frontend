@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import EditBtn from "../components/EditBtn/EditBtn";
 import api from "../hooks/api";
 
 export default function HealthExamination() {
@@ -14,7 +15,7 @@ export default function HealthExamination() {
       .catch((error) => console.error("Erro ao buscar o exame:", error));
   }, [id]);
 
-  if(!examination) return <p>Carregando...</p>;
+  if (!examination) return <p>Carregando...</p>;
 
   return (
     <>
@@ -22,6 +23,7 @@ export default function HealthExamination() {
       <p>
         <strong>Descrição:</strong> {examination.description}
       </p>
+      <EditBtn to={`/health-examinations/${id}/edit`} />
       <button onClick={() => navigate(-1)}>Voltar</button>
     </>
   );

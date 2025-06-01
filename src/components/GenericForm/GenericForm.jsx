@@ -3,33 +3,28 @@ import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../hooks/api';
 import './style.css';
 
-// Remove initialData como estado interno primário para campos simples
-// Agora o componente recebe `formData` e `onFormChange` para os campos básicos
 export default function GenericForm({
   entityName,
   fields,
-  onSubmit, // Mudança: agora recebe uma função `onSubmit`
+  onSubmit, 
   apiUrl,
   isEditing = false,
   children,
-  currentFormData, // Nova prop: o formData atual do componente pai
-  onFieldChange, // Nova prop: função para atualizar campos simples no pai
+  currentFormData,
+  onFieldChange,
 }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // useEffect para carregar dados para edição se `currentFormData` não foi preenchido pelo pai
+  
   useEffect(() => {
-    // Se está em modo de edição, tem um ID, e o pai não preencheu os dados iniciais
     if (isEditing && id && !Object.keys(currentFormData || {}).length) {
       const fetchEntityData = async () => {
         setLoading(true);
         try {
           const response = await api.get(`${apiUrl}/${id}`);
-          // Chame a função de mudança de campo no pai para atualizar os dados
-          // Isso é importante para que o pai seja o dono dos dados
           for (const key in response.data) {
             onFieldChange({ target: { name: key, value: response.data[key] } });
           }
@@ -42,10 +37,9 @@ export default function GenericForm({
       };
       fetchEntityData();
     }
-  }, [isEditing, id, apiUrl, currentFormData, onFieldChange]); // Depende de onFieldChange também
+  }, [isEditing, id, apiUrl, currentFormData, onFieldChange]);
 
   const handleInternalChange = (e) => {
-    // Apenas repassa a mudança para o pai
     onFieldChange(e);
   };
 

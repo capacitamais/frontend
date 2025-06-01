@@ -1,5 +1,6 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import EditBtn from "../components/EditBtn/EditBtn";
 import api from "../hooks/api";
 
 export default function Task() {
@@ -19,6 +20,7 @@ export default function Task() {
   return (
     <>
       <h2>{task.name}</h2>
+      <EditBtn to={`/tasks/${id}/edit`} />
       <button onClick={() => navigate(-1)}>
         Voltar
       </button>

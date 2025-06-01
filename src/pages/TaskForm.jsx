@@ -1,92 +1,82 @@
-import { useState, useEffect, useCallback, useMemo } from 'react'; // Adicionado useMemo
-import GenericForm from '../components/GenericForm/GenericForm';
-import { useNavigate, useParams } from 'react-router-dom';
-import api from '../hooks/api';
-import { FaTimesCircle } from 'react-icons/fa';
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { FaTimesCircle } from "react-icons/fa";
+import GenericForm from "../components/GenericForm/GenericForm";
+import api from "../hooks/api";
 
 export default function TaskForm() {
   const navigate = useNavigate();
-  const { id } = useParams(); // Para modo de edição
+  const { id } = useParams();
+
   const [technicians, setTechnicians] = useState([]);
-  const [allActivities, setAllActivities] = useState([]); // Todas as atividades carregadas
-  const [allEmployees, setAllEmployees] = useState([]);   // Todos os funcionários carregados
-  const [availableActivities, setAvailableActivities] = useState([]);
-  const [availableEmployees, setAvailableEmployees] = useState([]);
+  const [allActivities, setAllActivities] = useState([]);
+  const [allEmployees, setAllEmployees] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
   const [errorData, setErrorData] = useState(null);
 
-  // Estado completo do formulário
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    dueDate: '',
-    technician: '',
-    activities: [], // Armazena apenas IDs
-    employees: [],   // Armazena apenas IDs
+    name: "",
+    description: "",
+    dueDate: "",
+    technician: "",
+    activities: [],
+    employees: [],
   });
 
-  // Funções de manipulação de campos simples
   const handleFormFieldChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
-  // Callback para buscar todos os dados de dropdown e, se for edição, os dados da tarefa
   const fetchInitialData = useCallback(async () => {
     try {
       setLoadingData(true);
       const [techniciansRes, activitiesRes, employeesRes] = await Promise.all([
-        api.get('/users?role=technician'),
-        api.get('/activities'),
-        api.get('/employees'),
+        api.get("/users?role=technician"),
+        api.get("/activities"),
+        api.get("/employees"),
       ]);
 
-      const fetchedTechnicians = techniciansRes.data.map(user => ({ value: user._id, label: user.name }));
-      const fetchedAllActivities = activitiesRes.data.map(activity => ({ value: activity._id, label: activity.name }));
-      const fetchedAllEmployees = employeesRes.data.map(employee => ({ value: employee._id, label: employee.name }));
+      const fetchedTechnicians = techniciansRes.data.map((user) => ({
+        value: user._id,
+        label: user.name,
+      }));
+
+      const fetchedActivities = activitiesRes.data.map((activity) => ({
+        value: activity._id,
+        label: activity.name,
+      }));
+
+      const fetchedEmployees = employeesRes.data.map((employee) => ({
+        value: employee._id,
+        label: employee.name,
+      }));
 
       setTechnicians(fetchedTechnicians);
-      setAllActivities(fetchedAllActivities); // Guarda todas as atividades
-      setAllEmployees(fetchedAllEmployees);   // Guarda todos os funcionários
-
-      let initialTaskData = {
-        name: '',
-        description: '',
-        dueDate: '',
-        technician: '',
-        activities: [],
-        employees: [],
-      };
+      setAllActivities(fetchedActivities);
+      setAllEmployees(fetchedEmployees);
 
       if (id) {
         const taskRes = await api.get(`/tasks/${id}`);
-        const taskData = taskRes.data;
+        const task = taskRes.data;
 
-        initialTaskData = {
-          name: taskData.name || '',
-          description: taskData.description || '',
-          dueDate: taskData.dueDate ? taskData.dueDate.split('T')[0] : '',
-          technician: taskData.technician || '',
-          activities: taskData.activities || [],
-          employees: taskData.employees || [],
-        };
+        setFormData({
+          name: task.name || "",
+          description: task.description || "",
+          dueDate: task.dueDate?.split("T")[0] || "",
+          technician: task.technician?._id || "",
+          activities: task.activities?.map((a) => a._id) || [],
+          employees: task.employees?.map((e) => e._id) || [],
+        });
       }
-
-      setFormData(initialTaskData);
-
-      // Ajusta as listas de disponíveis para as atividades
-      setAvailableActivities(fetchedAllActivities.filter(act => !initialTaskData.activities.includes(act.value)));
-
-      // Ajusta as listas de disponíveis para os funcionários
-      setAvailableEmployees(fetchedAllEmployees.filter(emp => !initialTaskData.employees.includes(emp.value)));
 
       setLoadingData(false);
     } catch (err) {
-      setErrorData('Failed to load form data. Please check your backend connection.');
-      console.error('Error fetching form data:', err);
+      console.error("Erro ao buscar dados:", err);
+      setErrorData("Erro ao carregar dados. Verifique a conexão.");
       setLoadingData(false);
     }
   }, [id]);
@@ -95,122 +85,109 @@ export default function TaskForm() {
     fetchInitialData();
   }, [fetchInitialData]);
 
-  // Cria um mapa de IDs para rótulos para busca rápida
-  // Isso será usado para exibir os nomes dos itens selecionados
   const activityMap = useMemo(() => {
-    return allActivities.reduce((map, activity) => {
-      map[activity.value] = activity.label;
-      return map;
+    return allActivities.reduce((acc, item) => {
+      acc[item.value] = item.label;
+      return acc;
     }, {});
   }, [allActivities]);
 
   const employeeMap = useMemo(() => {
-    return allEmployees.reduce((map, employee) => {
-      map[employee.value] = employee.label;
-      return map;
+    return allEmployees.reduce((acc, item) => {
+      acc[item.value] = item.label;
+      return acc;
     }, {});
   }, [allEmployees]);
 
+  const availableActivities = useMemo(() => {
+    return allActivities.filter(
+      (a) => !formData.activities.includes(a.value)
+    );
+  }, [allActivities, formData.activities]);
 
-  // Funções de manipulação para Activities
+  const availableEmployees = useMemo(() => {
+    return allEmployees.filter(
+      (e) => !formData.employees.includes(e.value)
+    );
+  }, [allEmployees, formData.employees]);
+
   const handleAddActivity = (e) => {
-    const activityId = e.target.value;
-    if (activityId && !formData.activities.includes(activityId)) {
-      setFormData(prev => ({
+    const id = e.target.value;
+    if (id && !formData.activities.includes(id)) {
+      setFormData((prev) => ({
         ...prev,
-        activities: [...prev.activities, activityId],
+        activities: [...prev.activities, id],
       }));
-      setAvailableActivities(prev => prev.filter(a => a.value !== activityId));
-      e.target.value = ''; // Reseta o select
     }
+    e.target.value = "";
   };
 
-  const handleRemoveActivity = (activityId) => {
-    setFormData(prev => ({
+  const handleRemoveActivity = (id) => {
+    setFormData((prev) => ({
       ...prev,
-      activities: prev.activities.filter(id => id !== activityId),
+      activities: prev.activities.filter((a) => a !== id),
     }));
-    // Adiciona de volta à lista de disponíveis
-    const activityToReturn = allActivities.find(a => a.value === activityId);
-    if (activityToReturn) {
-      setAvailableActivities(prev => [...prev, activityToReturn].sort((a, b) => a.label.localeCompare(b.label)));
-    }
   };
 
-  // Funções de manipulação para Employees
   const handleAddEmployee = (e) => {
-    const employeeId = e.target.value;
-    if (employeeId && !formData.employees.includes(employeeId)) {
-      setFormData(prev => ({
+    const id = e.target.value;
+    if (id && !formData.employees.includes(id)) {
+      setFormData((prev) => ({
         ...prev,
-        employees: [...prev.employees, employeeId],
+        employees: [...prev.employees, id],
       }));
-      setAvailableEmployees(prev => prev.filter(emp => emp.value !== employeeId));
-      e.target.value = ''; // Reseta o select
     }
+    e.target.value = "";
   };
 
-  const handleRemoveEmployee = (employeeId) => {
-    setFormData(prev => ({
+  const handleRemoveEmployee = (id) => {
+    setFormData((prev) => ({
       ...prev,
-      employees: prev.employees.filter(id => id !== employeeId),
+      employees: prev.employees.filter((e) => e !== id),
     }));
-    // Adiciona de volta à lista de disponíveis
-    const employeeToReturn = allEmployees.find(emp => emp.value === employeeId);
-    if (employeeToReturn) {
-      setAvailableEmployees(prev => [...prev, employeeToReturn].sort((a, b) => a.label.localeCompare(b.label)));
-    }
   };
 
-  const handleSubmit = async (dataToSubmit) => {
+  const handleSubmit = async (data) => {
     try {
       if (id) {
-        await api.put(`/tasks/${id}`, dataToSubmit);
-        alert('Tarefa alterada com sucesso!');
+        await api.put(`/tasks/${id}`, data);
+        alert("Tarefa atualizada com sucesso.");
       } else {
-        await api.post('/tasks', dataToSubmit);
-        alert('Tarefa criada com sucesso!');
+        await api.post("/tasks", data);
+        alert("Tarefa criada com sucesso.");
       }
-      navigate('/tasks');
+      navigate("/tasks");
     } catch (err) {
-      console.error('Erro ao salvar tarefa:', err.response?.data || err);
-      throw err;
+      console.error("Erro ao salvar:", err);
+      alert("Erro ao salvar tarefa.");
     }
   };
 
-  if (loadingData) {
-    return <div className="loading-message">Iniciando formulário...</div>;
-  }
+  if (loadingData) return <p>Carregando dados...</p>;
+  if (errorData) return <p>{errorData}</p>;
 
-  if (errorData) {
-    return <div className="error-message">{errorData}</div>;
-  }
+  const displaySelectedActivities = formData.activities.map((id) => ({
+    value: id,
+    label: activityMap[id] || `Atividade (${id})`,
+  }));
 
-  // Prepara os nomes/rótulos para exibição dos itens selecionados
-  const displaySelectedActivities = formData.activities
-    .map(activityId => ({
-      value: activityId,
-      label: activityMap[activityId] || `Unknown Activity (${activityId})`
-    }));
-
-  const displaySelectedEmployees = formData.employees
-    .map(employeeId => ({
-      value: employeeId,
-      label: employeeMap[employeeId] || `Unknown Employee (${employeeId})`
-    }));
+  const displaySelectedEmployees = formData.employees.map((id) => ({
+    value: id,
+    label: employeeMap[id] || `Funcionário (${id})`,
+  }));
 
   return (
     <div className="task-form-container">
       <GenericForm
         entityName="Tarefa"
         fields={[
-          { name: 'name', label: 'Nome', type: 'text', required: true },
-          { name: 'description', label: 'Descrição da tarefa', type: 'textarea', required: true },
-          { name: 'dueDate', label: 'Prazo', type: 'date', required: true },
+          { name: "name", label: "Nome", type: "text", required: true },
+          { name: "description", label: "Descrição", type: "textarea", required: true },
+          { name: "dueDate", label: "Prazo", type: "date", required: true },
           {
-            name: 'technician',
-            label: 'Técnico',
-            type: 'select',
+            name: "technician",
+            label: "Técnico",
+            type: "select",
             required: true,
             options: technicians,
           },
@@ -221,67 +198,58 @@ export default function TaskForm() {
         currentFormData={formData}
         onFieldChange={handleFormFieldChange}
       >
-        {/* Renderiza os campos customizados (Activities e Employees) como children */}
+        {/* Atividades */}
         <div className="form-group">
           <label htmlFor="activities-select">Atividades:</label>
           <select
             id="activities-select"
-            value=""
             onChange={handleAddActivity}
+            value=""
             disabled={availableActivities.length === 0}
           >
             <option value="">Selecione atividades...</option>
-            {availableActivities.map((activity) => (
-              <option key={activity.value} value={activity.value}>
-                {activity.label}
-              </option>
+            {availableActivities.map((a) => (
+              <option key={a.value} value={a.value}>{a.label}</option>
             ))}
           </select>
           <div className="selected-items-list">
-            {displaySelectedActivities.length > 0 ? (
-              displaySelectedActivities.map((activity) => (
-                <div key={activity.value} className="selected-item-tag">
-                  {activity.label}
-                  <FaTimesCircle
-                    className="remove-item-icon"
-                    onClick={() => handleRemoveActivity(activity.value)}
-                  />
+            {displaySelectedActivities.length ? (
+              displaySelectedActivities.map((a) => (
+                <div key={a.value} className="selected-item-tag">
+                  {a.label}
+                  <FaTimesCircle onClick={() => handleRemoveActivity(a.value)} />
                 </div>
               ))
             ) : (
-              <p className="no-selection-message">Sem atividades selecionadas.</p>
+              <p>Sem atividades selecionadas.</p>
             )}
           </div>
         </div>
 
+        {/* Colaboradores */}
         <div className="form-group">
           <label htmlFor="employees-select">Colaboradores:</label>
           <select
             id="employees-select"
-            value=""
             onChange={handleAddEmployee}
+            value=""
             disabled={availableEmployees.length === 0}
           >
-            <option value="">Selecione colaboradoes...</option>
-            {availableEmployees.map((employee) => (
-              <option key={employee.value} value={employee.value}>
-                {employee.label}
-              </option>
+            <option value="">Selecione colaboradores...</option>
+            {availableEmployees.map((e) => (
+              <option key={e.value} value={e.value}>{e.label}</option>
             ))}
           </select>
           <div className="selected-items-list">
-            {displaySelectedEmployees.length > 0 ? (
-              displaySelectedEmployees.map((employee) => (
-                <div key={employee.value} className="selected-item-tag">
-                  {employee.label}
-                  <FaTimesCircle
-                    className="remove-item-icon"
-                    onClick={() => handleRemoveEmployee(employee.value)}
-                  />
+            {displaySelectedEmployees.length ? (
+              displaySelectedEmployees.map((e) => (
+                <div key={e.value} className="selected-item-tag">
+                  {e.label}
+                  <FaTimesCircle onClick={() => handleRemoveEmployee(e.value)} />
                 </div>
               ))
             ) : (
-              <p className="no-selection-message">Sem colaboradores selecionados.</p>
+              <p>Sem colaboradores selecionados.</p>
             )}
           </div>
         </div>
