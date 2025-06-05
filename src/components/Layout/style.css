@@ -1,10 +1,10 @@
-html,
-body,
-#root {
+/* Reset básico */
+html, body, #root {
   height: 100%;
   margin: 0;
 }
 
+/* Container principal */
 .app-container {
   display: flex;
   flex-direction: column;
@@ -13,54 +13,58 @@ body,
   overflow-x: hidden;
 }
 
+/* Conteúdo principal */
 .main-content {
   flex: 1;
   padding: 1rem;
   overflow-y: auto;
-  max-height: calc(100vh - 100px); /* Altura inicial aproximada, será atualizada por JS */
+  max-height: calc(100vh - 100px); /* Ajuste inicial */
 }
 
+/* Home Container */
 .home-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza horizontalmente */
-  padding: 1rem 1rem; /* Diminuído o padding vertical */
-  background-color: #f8f9fa; /* Cor de fundo suave */
-  /* Removido min-height: calc(100vh - 60px - 40px); pois o main-content já gerencia a altura */
-  box-sizing: border-box; /* Inclui padding na largura/altura total */
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  box-sizing: border-box;
   color: #333;
 }
 
+/* Logo */
 .home-logo {
   display: flex;
   align-items: center;
-  gap: 8px; /* Espaçamento entre o texto e o ícone (diminuído) */
-  margin-bottom: 0.25rem; /* Margem inferior (diminuída) */
-  color: #2c3e50; /* Cor escura para o logo */
+  gap: 8px;
+  margin-bottom: 0.25rem;
+  color: #2c3e50;
 }
 
 .home-logo h1 {
-  font-size: 2rem; /* Mantendo o tamanho de 2rem conforme seu último input */
+  font-size: 2rem;
   margin: 0;
   font-weight: 700;
 }
 
+/* Nome do App */
 .home-app-name {
-  font-size: 1.1rem; /* Diminuído o font-size */
+  font-size: 1.1rem;
   color: #6c757d;
-  margin-bottom: 1rem; /* Margem inferior (diminuída) */
+  margin-bottom: 1rem;
   text-align: center;
 }
 
+/* Lista de links */
 .home-links-list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem; /* Espaçamento entre os itens da lista (diminuído) */
+  gap: 0.6rem;
   width: 100%;
-  max-width: 300px; /* Largura máxima para a lista em telas pequenas */
+  max-width: 300px;
 }
 
 .home-links-list li {
@@ -68,86 +72,86 @@ body,
 }
 
 .home-links-list a {
-  display: block; /* Faz o link ocupar toda a largura do li */
-  padding: 8px 12px; /* Diminuído o padding */
-  background-color: #eef6fa; /* Cor de fundo suave, similar ao searchBox */
+  display: block;
+  padding: 8px 12px;
+  background-color: #eef6fa;
   border-radius: 8px;
   text-decoration: none;
   color: #333;
-  font-size: 0.9rem; /* Diminuído o font-size */
+  font-size: 0.9rem;
   font-weight: 500;
   text-align: center;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .home-links-list a:hover {
-  background-color: #d7ecf4; /* Cor de hover */
-  transform: translateY(-2px); /* Efeito de elevação */
+  background-color: #d7ecf4;
+  transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Responsividade --- */
+/* ------------------ Responsividade ------------------ */
 
-/* Para telas maiores (ex: tablets - largura mínima de 768px) */
+/* Telas médias - Tablets */
 @media (min-width: 768px) {
   .home-logo h1 {
     font-size: 3rem;
   }
 
-  .home-logo .fa-plus { /* Estilo para o ícone FaPlus, se necessário */
-      font-size: 25px;
+  .home-logo .fa-plus {
+    font-size: 25px;
   }
 
   .home-app-name {
-    font-size: 1.4rem; /* Ajustado */
+    font-size: 1.4rem;
   }
 
   .home-links-list {
-    flex-direction: row; /* Alinha em linha para telas maiores */
-    flex-wrap: wrap; /* Permite que os itens quebrem linha */
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    max-width: 700px; /* Aumenta a largura máxima */
-    gap: 0.8rem; /* Aumenta o espaçamento entre os itens (ajustado) */
+    max-width: 700px;
+    gap: 0.8rem;
   }
 
   .home-links-list li {
-    flex: 1 1 calc(50% - 0.8rem); /* Dois itens por linha, com espaçamento (ajustado) */
+    flex: 1 1 calc(50% - 0.8rem);
     max-width: calc(50% - 0.8rem);
   }
 
   .home-links-list a {
-    padding: 10px 15px; /* Diminuído o padding */
-    font-size: 1rem; /* Diminuído o font-size */
+    padding: 10px 15px;
+    font-size: 1rem;
   }
 }
 
-/* Para telas ainda maiores (ex: desktops - largura mínima de 1200px) */
+/* Telas grandes - Desktop */
 @media (min-width: 1200px) {
   .home-logo h1 {
     font-size: 4rem;
   }
 
-  .home-logo .fa-plus { /* Estilo para o ícone FaPlus, se necessário */
-      font-size: 30px;
+  .home-logo .fa-plus {
+    font-size: 30px;
   }
 
   .home-app-name {
-    font-size: 1.6rem; /* Ajustado */
+    font-size: 1.6rem;
   }
 
   .home-links-list {
-    max-width: 900px; /* Aumenta ainda mais a largura máxima */
-    gap: 1.2rem; /* Aumenta o espaçamento (ajustado) */
+    max-width: 900px;
+    gap: 1.2rem;
   }
 
   .home-links-list li {
-    flex: 1 1 calc(33.33% - 1.2rem); /* Três itens por linha, com espaçamento (ajustado) */
+    flex: 1 1 calc(33.33% - 1.2rem);
     max-width: calc(33.33% - 1.2rem);
   }
 
   .home-links-list a {
-    padding: 12px 20px; /* Diminuído o padding */
-    font-size: 1.1rem; /* Diminuído o font-size */
+    padding: 12px 20px;
+    font-size: 1.1rem;
   }
 }

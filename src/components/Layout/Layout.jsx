@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar'; // Supondo que o caminho está correto
-import Footer from '../Footer/Footer'; // Supondo que o caminho está correto
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
 import './style.css';
 
 export default function Layout() {
@@ -9,27 +9,25 @@ export default function Layout() {
 
   useEffect(() => {
     const updateMainContentHeight = () => {
-      const navbarElement = document.querySelector('.navbar');
-      const footerElement = document.querySelector('.footer');
-      const mainContentElement = document.querySelector('.main-content');
+      const navbar = document.querySelector('.navbar');
+      const footer = document.querySelector('.footer');
+      const main = document.querySelector('.main-content');
 
-      if (navbarElement && footerElement && mainContentElement) {
-        const navbarHeight = navbarElement.offsetHeight;
-        const footerHeight = footerElement.offsetHeight;
+      if (navbar && footer && main) {
+        const navbarHeight = navbar.offsetHeight;
+        const footerHeight = footer.offsetHeight;
         const newMaxHeight = `calc(100vh - ${navbarHeight}px - ${footerHeight}px)`;
-        mainContentElement.style.maxHeight = newMaxHeight;
+        main.style.maxHeight = newMaxHeight;
       }
     };
 
-    // Chame a função inicialmente e sempre que a janela for redimensionada
     updateMainContentHeight();
     window.addEventListener('resize', updateMainContentHeight);
 
-    // Limpeza do listener no desmontar do componente
     return () => {
       window.removeEventListener('resize', updateMainContentHeight);
     };
-  }, [location]); // Dependência do location para atualizar em mudanças de rota, se necessário
+  }, [location]);
 
   return (
     <div className='app-container'>

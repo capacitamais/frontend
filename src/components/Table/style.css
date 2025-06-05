@@ -1,45 +1,94 @@
+/* Container */
+.table-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label bonita com linhas nas laterais */
+.table-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  margin: 0 0 10px 0;
+  color: #333;
+  font-weight: bold;
+  font-size: 22px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.table-label span {
+  position: relative;
+}
+
+.table-label::before,
+.table-label::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background-color: #9cd4ed;
+  margin: 0 12px;
+  border-radius: 999px;
+}
+
+/* Lista dos cards */
 .table {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  overflow-y: auto;
+  gap: 14px;
+  width: 100%;
 }
 
+/* Cada linha */
 .table-row {
-  margin-bottom: 3px;
+  width: 100%;
+  animation: fadeIn 0.5s ease;
 }
 
-.label {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  margin: 8px;
-  color: #333;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  font-weight: bold;
-  font-size: 18px;
-  margin-bottom: 6px;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
+/* CardBox ocupa toda a largura */
+.table-row > * {
+  width: 100%;
 }
 
-@media (min-width: 768px) {
-  .label {
-    flex-direction: row;
-    padding: 15px;
-    font-size: 22px;
+/* Animação */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (min-width: 1200px) {
-  .label {
-    flex-direction: row;
-    padding: 18px;
+/* Tablet */
+@media (min-width: 768px) {
+  .table-label {
     font-size: 26px;
+    padding: 18px;
+  }
+
+  .table {
+    gap: 16px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .table-label {
+    font-size: 30px;
+    padding: 22px;
+  }
+
+  .table {
+    gap: 18px;
   }
 }

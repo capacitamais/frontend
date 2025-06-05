@@ -7,81 +7,52 @@
     padding: 10px;
     margin: 8px;
     border-radius: 8px;
-    background-color: #eef6fa; /* Mesma cor de fundo dos outros componentes */
+    background-color: #eef6fa;
     color: #333;
-    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
 .generic-form-container:hover {
-    background-color: #d7ecf4; /* Mesmo efeito de hover */
+    background-color: #d7ecf4;
 }
 
 /* Título do formulário */
 .generic-form-container h2 {
     font-size: 20px;
     margin-bottom: 15px;
-    color: #333; /* Cor do texto consistente */
+    color: #333;
     text-align: center;
 }
 
-/* Responsivo: tablet para o container */
-@media (min-width: 768px) {
-    .generic-form-container {
-        padding: 15px;
-        flex-direction: column; /* Manter coluna para formulário */
-    }
-    .generic-form-container h2 {
-        font-size: 24px;
-    }
-}
-
-/* Responsivo: desktop para o container */
-@media (min-width: 1200px) {
-    .generic-form-container {
-        padding: 20px;
-        margin: 12px;
-    }
-    .generic-form-container h2 {
-        font-size: 28px;
-    }
-}
-
-/* Estilos para o formulário em si (o elemento <form>) */
+/* Formulário */
 .generic-form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espaçamento entre os grupos de formulário */
+    gap: 15px;
 }
 
-/* Grupo de cada campo (label + input) */
+/* Grupo de campos */
 .form-group {
     display: flex;
     flex-direction: column;
 }
 
-/* Labels dos campos */
 .form-group label {
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 5px;
-    color: #555; /* Um tom de cinza para as labels */
+    color: #555;
 }
 
-/* Estilos para inputs, textareas e selects */
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"],
-.form-group input[type="number"],
-.form-group input[type="date"], /* Adicionei 'date' aqui para consistência */
+/* Inputs, Textareas e Selects */
+.form-group input,
 .form-group textarea,
 .form-group select {
-    flex: 1;
     padding: 8px;
-    border: 1px solid #cce7f5; /* Borda suave e azulada */
-    border-radius: 5px; /* Bordas arredondadas */
+    border: 1px solid #cce7f5;
+    border-radius: 5px;
     font-size: small;
-    background-color: #ffffff; /* Fundo branco */
+    background-color: #ffffff;
     color: #333;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -90,45 +61,21 @@
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #9cd4ed; /* Cor de borda ao focar */
-    box-shadow: 0 0 5px rgba(156, 212, 237, 0.5); /* Sombra suave ao focar */
+    border-color: #9cd4ed;
+    box-shadow: 0 0 5px rgba(156, 212, 237, 0.5);
 }
 
-/* Responsivo para campos */
-@media (min-width: 768px) {
-    .form-group label {
-        font-size: 16px;
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        font-size: medium;
-    }
-}
-
-@media (min-width: 1200px) {
-    .form-group label {
-        font-size: 18px;
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        font-size: large;
-    }
-}
-
-/* Novo: Contêiner para os botões de ação */
+/* Ações (Botões) */
 .form-actions {
-  display: flex;
-  justify-content: flex-end; 
-  gap: 10px; /* Espaçamento entre os botões */
-  margin-top: 20px; /* Espaçamento acima dos botões */
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-/* Estilo base para todos os botões dentro do formulário */
 .generic-form button {
-    background-color: #9cd4ed; /* Cor de fundo padrão para botões de ação */
-    color: #ffffff; /* Texto branco */
+    background-color: #9cd4ed;
+    color: white;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -136,17 +83,14 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
     font-size: medium;
     font-weight: bold;
-    /* Remover align-self: center; e margin-top: 10px; daqui */
-    min-width: 120px; /* Garante uma largura mínima */
+    min-width: 120px;
 }
 
 .cancel-button:hover:not(:disabled) {
     background-color: #f7dada;
     color: #a02020;
-    border-color: #a02020; 
 }
 
-/* Estilo de hover e active para todos os botões de ação */
 .generic-form button:hover:not(:disabled) {
     background-color: #7abeda;
     transform: translateY(-1px);
@@ -157,13 +101,12 @@
     transform: translateY(0);
 }
 
-/* Estilo para botões desabilitados */
 .generic-form button:disabled {
-    background-color: #cccccc; /* Cor para botão desabilitado */
+    background-color: #cccccc;
     cursor: not-allowed;
 }
 
-/* Mensagens de loading e erro */
+/* Mensagens de erro e carregamento */
 .loading-message,
 .error-message {
     padding: 10px;
@@ -174,11 +117,48 @@
 }
 
 .loading-message {
-    background-color: #e0f7fa; /* Um azul claro para loading */
+    background-color: #e0f7fa;
     color: #007bff;
 }
 
 .error-message {
-    background-color: #ffe0e0; /* Um vermelho claro para erro */
+    background-color: #ffe0e0;
     color: #d32f2f;
+}
+
+/* Responsividade: Tablet */
+@media (min-width: 768px) {
+    .generic-form-container {
+        padding: 15px;
+    }
+    .generic-form-container h2 {
+        font-size: 24px;
+    }
+    .form-group label {
+        font-size: 16px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: medium;
+    }
+}
+
+/* Responsividade: Desktop */
+@media (min-width: 1200px) {
+    .generic-form-container {
+        padding: 20px;
+        margin: 12px;
+    }
+    .generic-form-container h2 {
+        font-size: 28px;
+    }
+    .form-group label {
+        font-size: 18px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: large;
+    }
 }

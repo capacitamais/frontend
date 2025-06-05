@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import "./style.css"
+import './SearchBox.css';
 
-export default function SearchBox({ onSearch }) { // Adicionado o { após function SearchBox
-  const [searchTerm, setSearchTerm] = useState("");
+export default function SearchBox({ onSearch }) {
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -11,19 +11,34 @@ export default function SearchBox({ onSearch }) { // Adicionado o { após functi
   const handleSearch = () => {
     if (onSearch) {
       onSearch(searchTerm);
+      setSearchTerm(''); // Limpa o campo após buscar (opcional)
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
     }
   };
 
   return (
-    <div className='searchBox'>
+    <div className="searchBox">
       <input
         type="text"
         placeholder="Procurar..."
         value={searchTerm}
         onChange={handleInputChange}
-        className="searchBoxInput" // Mantenha esta classe se quiser usar .searchBoxInput no CSS
+        onKeyDown={handleKeyDown}
+        className="searchBoxInput"
+        aria-label="Campo de busca"
       />
-      <button onClick={handleSearch}>Buscar</button> {/* Removido value="->" pois não é necessário para o botão */ }
+      <button
+        onClick={handleSearch}
+        className="searchBoxButton"
+        aria-label="Botão de buscar"
+      >
+        🔍 Buscar
+      </button>
     </div>
   );
 }

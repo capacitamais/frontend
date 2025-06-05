@@ -1,45 +1,53 @@
+:root {
+  --addcard-bg: #eef6fa;
+  --addcard-bg-hover: #d7ecf4;
+  --addcard-color: #333;
+}
+
 .add-card {
-  display: flex;
-  flex-direction: row; /* Mantém ícone e texto lado a lado */
+  display: inline-flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 8px; /* Espaço entre ícone e texto */
-  padding: 10px;
-  margin: 8px;
+  gap: 8px;
+  padding: 10px 16px;
   border-radius: 8px;
-  background-color: #eef6fa;
-  color: #333;
-  text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  cursor: pointer;
+  background-color: var(--addcard-bg);
+  color: var(--addcard-color);
   font-weight: 500;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   text-align: center;
+  user-select: none;
 }
 
-.add-card:hover {
-  background-color: #d7ecf4;
-  transform: scale(1.02);
+.add-card:hover,
+.add-card:focus {
+  background-color: var(--addcard-bg-hover);
+  transform: scale(1.05);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5); /* foco visível */
 }
 
-/* Responsivo: tablet */
+.add-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.7);
+}
+
+/* Responsivo tablet */
 @media (min-width: 768px) {
   .add-card {
-    padding: 15px;
-  }
-
-  .add-card span {
+    padding: 14px 20px;
     font-size: 16px;
   }
 }
 
-/* Responsivo: desktop */
+/* Responsivo desktop */
 @media (min-width: 1200px) {
   .add-card {
-    padding: 20px;
-    margin: 12px;
-  }
-
-  .add-card span {
+    padding: 18px 24px;
     font-size: 18px;
   }
 }

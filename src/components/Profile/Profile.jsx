@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from "../../hooks/useAuth";
+import "./Profile.css";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -16,14 +17,18 @@ export default function Profile() {
   }
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="profile-container">
       <h1>Perfil do Usuário</h1>
-      <p><strong>Nome:</strong> {user.name}</p>
-      <p><strong>Função:</strong> {user.role}</p>
-      <button onClick={handleLogout}>Sair</button>
-      <button onClick={() => navigate(-1)}>
-        Voltar
-      </button>
+
+      <div className="profile-info">
+        <p><strong>Nome:</strong> {user.name}</p>
+        <p><strong>Função:</strong> {user.role}</p>
+      </div>
+
+      <div className="profile-buttons">
+        <button onClick={handleLogout}>Sair</button>
+        <button onClick={() => navigate(-1)}>Voltar</button>
+      </div>
     </div>
   );
 }

@@ -1,57 +1,120 @@
+:root {
+  --card-bg: #eef6fa;
+  --card-bg-hover: #d7ecf4;
+  --card-color: #333;
+  --card-border: #cfe8f3;
+  --card-shadow: rgba(0, 0, 0, 0.05);
+}
+
 .cardBox {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  margin: 8px;
-  border-radius: 8px;
-  background-color: #eef6fa;
-  color: #333;
+  padding: 16px 24px;
+  margin: 12px 0;
+  border-radius: 12px;
+  background-color: var(--card-bg);
+  color: var(--card-color);
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 2px 4px var(--card-shadow);
+  width: 100%;
 }
 
-.cardBox:hover {
-  background-color: #d7ecf4;
+.cardBox:hover,
+.cardBox:focus {
+  background-color: var(--card-bg-hover);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* Texto da tag */
-.cardBox .tag .name .title {
-  font-weight: bold;
+.cardBox:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
+}
+
+/* Elementos internos */
+.cardBox .tag {
+  font-weight: 600;
   font-size: 14px;
+  color: #4caf50;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 6px;
 }
 
-/* Texto da descrição */
-.cardBox .description {
-  font-size: 13px;
+.cardBox .title {
+  font-weight: 700;
+  font-size: 20px;
+  color: #222;
+  margin-bottom: 4px;
 }
 
-/* Responsivo: tablet */
+.cardBox .name {
+  font-weight: 500;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.cardBox .description {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Responsivo tablet e desktop */
 @media (min-width: 768px) {
   .cardBox {
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    padding: 15px;
+    padding: 18px 28px;
+    gap: 20px;
   }
 
-  .cardBox .tag .name .title {
-    font-size: 16px;
+  .cardBox .left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cardBox .tag {
+    font-size: 15px;
+  }
+
+  .cardBox .title {
+    font-size: 22px;
+  }
+
+  .cardBox .name {
+    font-size: 18px;
   }
 
   .cardBox .description {
-    font-size: 15px;
+    font-size: 16px;
+    text-align: right;
+    flex-shrink: 0;
+    max-width: 40%;
   }
 }
 
-/* Responsivo: desktop */
+/* Desktop full width */
 @media (min-width: 1200px) {
   .cardBox {
-    padding: 20px;
-    margin: 12px;
+    padding: 20px 32px;
+    border-radius: 16px;
   }
 
-  .cardBox .tag .name .title {
-    font-size: 18px;
+  .cardBox .title {
+    font-size: 24px;
+  }
+
+  .cardBox .name {
+    font-size: 19px;
   }
 
   .cardBox .description {

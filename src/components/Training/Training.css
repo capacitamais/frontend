@@ -1,0 +1,99 @@
+/* --- Container geral --- */
+.training-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: calc(100vh - 140px); /* Ajusta considerando navbar + footer */
+  background-color: #f7fbfe;
+}
+
+/* --- Card --- */
+.training-card {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.training-card:hover {
+  transform: translateY(-2px);
+}
+
+/* --- Título --- */
+.training-title {
+  color: #2c3e50;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* --- Infos --- */
+.training-info p {
+  color: #333;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  font-size: 1rem;
+}
+
+.training-info strong {
+  color: #0077c2;
+}
+
+/* --- Botões --- */
+.training-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn-back {
+  background-color: #0077c2;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-back:hover {
+  background-color: #005a99;
+  transform: translateY(-2px);
+}
+
+.btn-back:active {
+  transform: scale(0.97);
+}
+
+/* --- Loading --- */
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* --- Responsivo --- */
+@media (max-width: 600px) {
+  .training-card {
+    padding: 20px;
+  }
+
+  .training-title {
+    font-size: 1.6rem;
+  }
+
+  .training-info p {
+    font-size: 0.95rem;
+  }
+
+  .btn-back {
+    width: 100%;
+    justify-content: center;
+  }
+}
