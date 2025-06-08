@@ -1,0 +1,120 @@
+/* src/components/EntityDetailsCard/style.css */
+
+.entity-details-card-container {
+  background-color: #eef6fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  color: #333;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espaça os itens: Voltar | Título | Editar */
+  margin-bottom: 20px;
+  position: relative; /* Para posicionamento do botão de voltar se necessário */
+}
+
+.back-button {
+  background-color: #6c757d; /* Cinza para o botão voltar */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9em;
+  white-space: nowrap; /* Evita quebra de linha em "Voltar" */
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}
+
+.entity-title {
+  font-size: 28px;
+  color: #333;
+  margin: 0 10px; /* Espaçamento entre os botões e o título */
+  flex-grow: 1; /* Permite que o título ocupe o espaço restante */
+  text-align: center;
+}
+
+/* Garante que o EditBtn tenha um estilo básico similar ao botão */
+.editBtn {
+  background-color: #007bff; /* Azul para o botão de edição */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  text-decoration: none; /* Remove sublinhado do link */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9em;
+  white-space: nowrap; /* Evita quebra de linha */
+}
+
+.editBtn:hover {
+  background-color: #0056b3;
+}
+
+.entity-description {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .details-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+.detail-item {
+  background-color: #f8fcff;
+  border: 1px solid #cce7f5;
+  border-radius: 5px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  font-size: 1.0em;
+  color: #444;
+}
+
+.detail-item strong {
+  margin-right: 8px;
+  color: #555;
+  font-weight: 600;
+}
+
+.status-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-toggle input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #007bff;
+}
+
+.status-loading {
+  font-size: 0.9em;
+  color: #007bff;
+}
+
+.status-error {
+  font-size: 0.9em;
+  color: #dc3545;
+}
