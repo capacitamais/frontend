@@ -1,0 +1,145 @@
+/* src/components/RelationshipManager/style.css */
+
+.relationship-manager-container {
+  background-color: #f0f8ff; /* Um azul mais claro para seções de relacionamento */
+  border: 1px solid #cce7f5;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.relationship-manager-container h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+/* Seção para adicionar novo relacionamento */
+.add-relationship-section {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.add-relationship-section select,
+.add-relationship-section input[type="date"],
+.add-relationship-section input[type="text"],
+.add-relationship-section input[type="number"] {
+  flex: 1; /* Permite que os campos se estendam */
+  min-width: 150px; /* Largura mínima para campos */
+  padding: 8px;
+  border: 1px solid #cce7f5;
+  border-radius: 5px;
+  font-size: small;
+  background-color: #ffffff;
+  color: #333;
+}
+
+.add-relationship-section button {
+  padding: 8px 15px;
+  background-color: #28a745; /* Cor verde para adicionar */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.add-relationship-section button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.add-relationship-section button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Lista de itens relacionados */
+.related-items-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.related-items-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6f7ff; /* Azul mais claro para itens da lista */
+  border: 1px solid #b3e0ff;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+.related-items-list li .extra-field-display {
+  margin-left: 10px;
+  font-size: 0.8em;
+  color: #666;
+  white-space: nowrap; /* Evita quebras de linha para datas/números */
+}
+
+.remove-item-icon {
+  color: #dc3545; /* Cor vermelha para o ícone de remover */
+  cursor: pointer;
+  margin-left: 10px;
+  transition: color 0.2s ease;
+}
+
+.remove-item-icon:hover {
+  color: #c82333;
+}
+
+.no-items-message {
+  color: #666;
+  font-style: italic;
+  text-align: center;
+  padding: 15px;
+}
+
+/* Mensagens de loading e erro (reutilizadas do GenericForm ou adaptadas) */
+.loading-message,
+.error-message {
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.loading-message {
+  background-color: #e0f7fa;
+  color: #007bff;
+}
+
+.error-message {
+  background-color: #ffe0e0;
+  color: #d32f2f;
+}
+
+.add-relationship-section label.extra-field-label {
+  font-weight: normal; /* Labels de campos extras podem ser um pouco menos proeminentes */
+  font-size: 0.85em;
+  margin-bottom: 0;
+  white-space: nowrap; /* Evita quebra de linha */
+  margin-right: 5px; /* Espaçamento após o label */
+}
+
+/* Garante que os inputs de data e texto nos campos extras tenham um layout correto */
+.add-relationship-section input[type="date"],
+.add-relationship-section input[type="text"] {
+    /* Pode ser necessário ajustar o flex-basis ou width aqui se a quebra de linha estiver ruim */
+    flex-grow: 1; /* Permite que eles cresçam para preencher o espaço disponível */
+    flex-shrink: 1;
+    flex-basis: 100px; /* Base mínima para cada campo */
+}
