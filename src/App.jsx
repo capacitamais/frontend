@@ -58,7 +58,7 @@ export default function App() {
           <Route
             path="/report"
             element={
-              <PrivateRoute requiredRole={["analyst", "technician"]}>
+              <PrivateRoute requiredRole="technician">
                 <Report />
               </PrivateRoute>
             }
@@ -74,7 +74,7 @@ export default function App() {
           />
           <Route path="/tasks/:id" element={<Task />} />
           <Route
-            path="/tasks/:id/edit"
+            path="/tasks/edit/:id"
             element={
               <PrivateRoute requiredRole="analyst">
                 <TaskForm />
@@ -92,7 +92,7 @@ export default function App() {
           />
           <Route path="/activities/:id" element={<Activity />} />
           <Route
-            path="/activities/:id/edit"
+            path="/activities/edit/:id"
             element={
               <PrivateRoute requiredRole="analyst">
                 <ActivityForm />
@@ -110,7 +110,7 @@ export default function App() {
           />
           <Route path="/employees/:id" element={<Employee />} />
           <Route
-            path="/employees/:id/edit"
+            path="/employees/edit/:id"
             element={
               <PrivateRoute requiredRole="analyst">
                 <EmployeeForm />
@@ -128,7 +128,7 @@ export default function App() {
           />
           <Route path="/trainings/:id" element={<Training />} />
           <Route
-            path="/trainings/:id/edit"
+            path="/trainings/edit/:id"
             element={
               <PrivateRoute requiredRole="analyst">
                 <TrainingForm />
@@ -146,7 +146,7 @@ export default function App() {
           />
           <Route path="/health-examinations/:id" element={<HealthExamination />} />
           <Route
-            path="/health-examinations/:id/edit"
+            path="/health-examinations/edit/:id"
             element={
               <PrivateRoute requiredRole="analyst">
                 <HealthExaminationForm />
@@ -164,7 +164,7 @@ export default function App() {
           />
           <Route path="/users/:id" element={<User />} />
           <Route
-            path="/users/:id/edit"
+            path="/users/edit/:id"
             element={
               <PrivateRoute requiredRole="analyst">
                 <UserForm />

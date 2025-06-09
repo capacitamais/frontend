@@ -1,8 +1,13 @@
+// src/components/EntityDetailsCard/EntityDetailsCard.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../hooks/api';
 import EditBtn from '../EditBtn/EditBtn';
 import './style.css';
+
+const getNestedValue = (obj, path) => {
+  return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+};
 
 export default function EntityDetailsCard({
   entityData,
@@ -29,10 +34,10 @@ export default function EntityDetailsCard({
 
     try {
       await api.patch(`${apiUrl}/${entityData._id}`, { isActive: newIsActive });
-      alert(`${entityName} status updated successfully!`);
+      alert(`${entityName} status atualizado com sucesso!`);
     } catch (err) {
-      console.error(`Error updating ${entityName} status:`, err.response?.data || err);
-      setErrorUpdate(`Failed to update ${entityName} status.`);
+      console.error(`Erro ao atualizar status de ${entityName}:`, err.response?.data || err);
+      setErrorUpdate(`Falha ao atualizar status de ${entityName}.`);
       setIsActiveState(!newIsActive);
     } finally {
       setLoadingUpdate(false);
@@ -46,21 +51,26 @@ export default function EntityDetailsCard({
   return (
     <div className="entity-details-card-container">
       <div className="card-header">
-        <button className="back-button" onClick={handleGoBack}>
-          Voltar
-        </button>
-        <h2 className="entity-title">{entityData.name || entityData.title || entityName + ' Details'}</h2>
-        {editUrl && (
-          <EditBtn to={editUrl} />
-        )}
+        <h2 className="entity-title">{entityData.name || entityData.title || `Detalhes do ${entityName}`}</h2>
+        <div className="card-actions"> {/* Novo contêiner para os botões */}
+          <button className="back-button" onClick={handleGoBack}>
+            Voltar
+          </button>
+          {editUrl && (
+            <EditBtn to={editUrl} />
+          )}
+        </div>
       </div>
 
-      <p className="entity-description">Detalhes do {entityName.toLowerCase()}</p>
+      <p className="entity-description">Detalhes de {entityName.toLowerCase()}</p>
 
       <div className="details-grid">
         {fieldsToDisplay.map((field) => (
           <p key={field.key} className="detail-item">
-            <strong>{field.label}:</strong> {entityData[field.key]}
+            <strong>{field.label}:</strong>{' '}
+            {field.format
+              ? field.format(getNestedValue(entityData, field.key), entityData)
+              : getNestedValue(entityData, field.key)}
           </p>
         ))}
 

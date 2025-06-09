@@ -1,5 +1,3 @@
-/* src/components/EntityDetailsCard/style.css */
-
 .entity-details-card-container {
   background-color: #eef6fa;
   border-radius: 8px;
@@ -11,52 +9,87 @@
 
 .card-header {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* Espaça os itens: Voltar | Título | Editar */
   margin-bottom: 20px;
-  position: relative; /* Para posicionamento do botão de voltar se necessário */
-}
-
-.back-button {
-  background-color: #6c757d; /* Cinza para o botão voltar */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 0.9em;
-  white-space: nowrap; /* Evita quebra de linha em "Voltar" */
-}
-
-.back-button:hover {
-  background-color: #5a6268;
-}
-
-.entity-title {
-  font-size: 28px;
-  color: #333;
-  margin: 0 10px; /* Espaçamento entre os botões e o título */
-  flex-grow: 1; /* Permite que o título ocupe o espaço restante */
+  gap: 15px;
   text-align: center;
 }
 
-/* Garante que o EditBtn tenha um estilo básico similar ao botão */
-.editBtn {
-  background-color: #007bff; /* Azul para o botão de edição */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
-  text-decoration: none; /* Remove sublinhado do link */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 0.9em;
-  white-space: nowrap; /* Evita quebra de linha */
+.entity-title {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+  flex-grow: 1;
+  word-break: break-word;
+  min-width: 0;
+  text-align: center;
 }
 
+.card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.back-button,
+.editBtn {
+  background-color: #9cd4ed;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-decoration: none; 
+  white-space: nowrap; 
+  min-width: 100px;
+  text-align: center;
+}
+
+.back-button:hover,
 .editBtn:hover {
-  background-color: #0056b3;
+  background-color: #7abeda;
+  transform: translateY(-1px);
+}
+
+.back-button:active,
+.editBtn:active {
+  background-color: #5ea1c5;
+  transform: translateY(0);
+}
+
+
+@media (min-width: 769px) {
+  .card-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .entity-title {
+    font-size: 28px; 
+    text-align: left;
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+
+  .card-actions {
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .back-button,
+  .editBtn {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    min-width: auto;
+  }
 }
 
 .entity-description {
@@ -73,9 +106,15 @@
   margin-bottom: 20px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) and (max-width: 1200px) {
   .details-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(calc(50% - 15px), 1fr));
+  }
+}
+
+@media (min-width: 1201px) {
+  .details-grid {
+    grid-template-columns: repeat(auto-fit, minmax(calc(33.33% - 15px), 1fr));
   }
 }
 
@@ -85,21 +124,39 @@
   border-radius: 5px;
   padding: 10px 15px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   font-size: 1.0em;
   color: #444;
+  word-break: break-word;
+  text-align: left;
 }
 
 .detail-item strong {
-  margin-right: 8px;
+  margin-bottom: 5px;
   color: #555;
   font-weight: 600;
+  white-space: normal;
+  width: 100%;
+}
+
+.detail-item > *:not(strong) {
+    width: 100%;
 }
 
 .status-toggle {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
+  white-space: nowrap;
+}
+
+.status-toggle strong {
+  margin-bottom: 0;
+  white-space: nowrap;
+  width: auto;
 }
 
 .status-toggle input[type="checkbox"] {
@@ -107,6 +164,13 @@
   height: 20px;
   cursor: pointer;
   accent-color: #007bff;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.status-toggle .status-loading,
+.status-toggle .status-error {
+  flex-shrink: 0;
 }
 
 .status-loading {
