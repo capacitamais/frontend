@@ -1,33 +1,60 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import EditBtn from "../components/EditBtn/EditBtn";
+import React, { useState, useEffect, useMemo } from "react";
+import { useParams } from "react-router-dom";
 import api from "../hooks/api";
+import EntityDetailsCard from "../components/EntityDetailsCard/EntityDetailsCard";
 
 export default function User() {
-  const navigate = useNavigate();
   const { id } = useParams();
   const [user, setUser] = useState(null);
+  const [loadingUser, setLoadingUser] = useState(true);
+  const [errorUser, setErrorUser] = useState(null);
+
+  const fetchUser = async () => {
+    try {
+      setLoadingUser(true);
+      const response = await api.get(`/users/${id}`);
+      setUser(response.data);
+    } catch (err) {
+      setErrorUser('Falha ao carregar dados do usuário.');
+      console.error("Erro ao buscar o usuário:", err);
+    } finally {
+      setLoadingUser(false);
+    }
+  };
 
   useEffect(() => {
-    api
-      .get(`/users/${id}`)
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch((error) => console.error("Erro ao buscar o usuário:", error));
+    if (id) {
+      fetchUser();
+    }
   }, [id]);
 
-  if (!user) return <p>Carregando...</p>;
+  const userFieldsToDisplay = useMemo(() => [
+    { key: "name", label: "Nome" },
+    { key: "registration", label: "Matrícula" },
+    { key: "role", label: "Cargo" },
+  ], []);
 
-  console.log(user);
+  if (loadingUser) {
+    return <div className="loading-message">Carregando detalhes do usuário...</div>;
+  }
+
+  if (errorUser) {
+    return <div className="error-message">{errorUser}</div>;
+  }
+
+  if (!user) {
+    return <div className="no-data-message">Usuário não encontrado.</div>;
+  }
 
   return (
-    <>
-      <h2><strong>Nome: </strong> {user.name}</h2>
-      <p><strong>Matrícula: </strong> {user.registration}</p>
-      <p>{user.role}</p>
-      <EditBtn to={`/users/${id}/edit`} />
-      <button onClick={() => navigate(-1)}>Voltar</button>
-    </>
+    <div className="user-details-page-wrapper">
+      <EntityDetailsCard
+        entityData={user}
+        entityName="Usuário"
+        apiUrl="/users"
+        fieldsToDisplay={userFieldsToDisplay}
+        editUrl={`/users/edit/${user._id}`}
+      />
+    </div>
   );
 }
