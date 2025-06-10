@@ -33,7 +33,7 @@ export default function EntityDetailsCard({
     setErrorUpdate(null);
 
     try {
-      await api.patch(`${apiUrl}/${entityData._id}`, { isActive: newIsActive });
+      await api.put(`${apiUrl}/${entityData._id}`, { isActive: newIsActive });
       alert(`${entityName} status atualizado com sucesso!`);
     } catch (err) {
       console.error(`Erro ao atualizar status de ${entityName}:`, err.response?.data || err);

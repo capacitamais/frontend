@@ -31,10 +31,6 @@ export default function HealthExamination() {
   // Memoriza os campos a serem exibidos no EntityDetailsCard
   const examinationFieldsToDisplay = useMemo(() => [
     { key: "description", label: "Descrição" },
-    // Adicione outros campos de HealthExamination que você deseja exibir
-    // Por exemplo, se houver um campo 'type' ou 'validityPeriod'
-    // { key: "type", label: "Tipo" },
-    // { key: "validityPeriod", label: "Período de Validade" },
   ], []);
 
   if (loadingExamination) {

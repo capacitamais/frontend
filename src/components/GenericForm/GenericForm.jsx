@@ -49,10 +49,8 @@ export default function GenericForm({
     setError(null);
 
     try {
-      // O `onSubmit` agora é passado como prop e já tem a lógica de POST/PUT
       await onSubmit(currentFormData); // Envia o formData completo do pai
 
-      // Não há mais navigate aqui, o pai decide o que fazer após o sucesso
     } catch (err) {
       setError(`Failed to save ${entityName}. Details: ${err.response?.data?.error || err.message}`);
       console.error(`Error saving ${entityName}:`, err.response?.data || err);

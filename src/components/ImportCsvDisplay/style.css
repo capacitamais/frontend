@@ -1,0 +1,185 @@
+/* src/components/ImportCsvDisplay/style.css */
+
+.import-csv-container {
+    padding: 20px;
+    background-color: #f8fbfc; /* Fundo da página */
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    gap: 20px;
+}
+
+.import-csv-container h2 {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Estilo base para elementos que parecem um CardBox */
+.card-like {
+    padding: 20px; /* Um pouco mais de padding para este card */
+    border-radius: 8px;
+    background-color: #eef6fa; /* Mesma cor de fundo do CardBox */
+    color: #333;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra mais proeminente */
+    width: 100%;
+    max-width: 600px; /* Limita a largura máxima do card */
+    box-sizing: border-box;
+}
+
+.card-like:hover {
+    background-color: #d7ecf4; /* Mesmo efeito de hover */
+}
+
+/* Área de arrastar e soltar */
+.drop-zone {
+    border: 2px dashed #9cd4ed; /* Borda tracejada azul */
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #ffffff; /* Fundo branco para a área de drop */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+}
+
+.drop-zone.drag-over {
+    border-color: #007bff; /* Borda azul mais escura quando arrastando */
+    background-color: #e6f7ff; /* Fundo azul claro */
+}
+
+.drop-zone p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 16px;
+}
+
+/* Mensagens de estado */
+.loading-message,
+.error-message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.loading-message {
+    background-color: #e0f7fa;
+    color: #007bff;
+}
+
+.error-message {
+    background-color: #ffe0e0;
+    color: #d32f2f;
+}
+
+/* Resultados da importação */
+.upload-results {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #cce7f5;
+}
+
+.upload-results h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.upload-results p {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.upload-results ul {
+    list-style: none; /* Remove bolinhas */
+    padding: 0;
+    margin: 0;
+}
+
+.upload-results li {
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha */
+    align-items: center;
+}
+
+.upload-results li strong {
+    margin-left: auto; /* Empurra o status para a direita */
+    padding-left: 10px; /* Espaçamento entre os dados e o status */
+}
+
+.upload-results .success-item {
+    background-color: #e6ffe6; /* Verde claro */
+    color: #28a745; /* Verde escuro */
+    border: 1px solid #c3e6cb;
+}
+
+.upload-results .error-item {
+    background-color: #ffebeb; /* Vermelho claro */
+    color: #dc3545; /* Vermelho escuro */
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+    .import-csv-container h2 {
+        font-size: 32px;
+    }
+    .card-like {
+        padding: 30px;
+    }
+    .drop-zone {
+        padding: 40px;
+    }
+    .drop-zone p {
+        font-size: 18px;
+    }
+    .upload-results h3 {
+        font-size: 22px;
+    }
+    .upload-results p {
+        font-size: 16px;
+    }
+    .upload-results li {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .import-csv-container h2 {
+        font-size: 36px;
+    }
+    .card-like {
+        padding: 40px;
+    }
+    .drop-zone {
+        min-height: 200px;
+    }
+    .drop-zone p {
+        font-size: 20px;
+    }
+    .upload-results h3 {
+        font-size: 24px;
+    }
+    .upload-results p {
+        font-size: 17px;
+    }
+    .upload-results li {
+        font-size: 16px;
+    }
+}
