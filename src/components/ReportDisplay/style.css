@@ -1,0 +1,308 @@
+/* Container principal da página de relatório */
+.report-container {
+    padding: 20px;
+    background-color: #f8fbfc;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Título principal da página */
+.report-container h2 {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Estilo base para elementos que parecem um CardBox (detalhes da tarefa, cartões de funcionário) */
+.card-like {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #eef6fa; /* Mesma cor de fundo do CardBox */
+    color: #333;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Uma sombra leve para profundidade */
+}
+
+.card-like:hover {
+    background-color: #d7ecf4; /* Mesmo efeito de hover do CardBox */
+}
+
+/* Detalhes da Tarefa */
+.task-details h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #007bff; /* Um toque de azul para o título da tarefa */
+}
+
+.task-details p {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.outdated-message {
+    color: #d32f2f; /* Vermelho forte para alerta */
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px solid #ffcccb; /* Borda vermelha clara */
+    background-color: #ffebeb; /* Fundo vermelho bem claro */
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Responsividade para a mensagem */
+@media (min-width: 768px) {
+    .outdated-message {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .outdated-message {
+        font-size: 16px;
+    }
+}
+
+.task-activities {
+    margin-top: 15px; /* Espaçamento superior */
+    padding-top: 10px; /* Padding interno */
+    border-top: 1px dashed #cce7f5; /* Linha tracejada separadora */
+}
+
+.task-activities h4 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.task-activities ul {
+    list-style: disc inside; /* Bolinhas para a lista */
+    padding-left: 15px; /* Recuo da lista */
+    margin: 0;
+}
+
+.task-activities li {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 3px;
+    color: #333;
+}
+
+/* Responsividade para a lista de atividades */
+@media (min-width: 768px) {
+    .task-activities h4 {
+        font-size: 20px;
+    }
+    .task-activities li {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .task-activities h4 {
+        font-size: 22px;
+    }
+    .task-activities li {
+        font-size: 16px;
+    }
+}
+
+/* Estilo para o campo de busca (se você não usar o SearchBox original) */
+.search-box-wrapper {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #eef6fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* Sombra mais suave */
+}
+
+.search-input-field {
+    flex: 1; /* Faz o input ocupar o espaço restante */
+    padding: 8px;
+    border: 1px solid #cce7f5; /* Borda suave e azulada */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: small;
+    background-color: #ffffff; /* Fundo branco */
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    max-width: 500px; /* Limita a largura do campo de busca */
+}
+
+.search-input-field:focus {
+    outline: none;
+    border-color: #9cd4ed; /* Cor de borda ao focar */
+    box-shadow: 0 0 5px rgba(156, 212, 237, 0.5); /* Sombra suave ao focar */
+}
+
+
+/* Lista de Colaboradores */
+.employees-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre os cartões de funcionário */
+}
+
+.employees-list h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Cartão de Colaborador individual */
+.employee-card {
+    /* Já herda de .card-like */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.employee-card h4 {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.employee-card p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.employee-card p.cannot-act-message {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.employee-details h5 {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.employee-details ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.employee-details li {
+    font-size: 13px;
+    margin-bottom: 3px;
+    background-color: #f0f8ff; /* Um fundo bem suave para cada item de lista */
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #e0f0ff;
+}
+
+.employee-details li.expired-item {
+    color: #d32f2f; /* Cor do texto vermelho */
+    background-color: #ffebeb; /* Fundo vermelho bem claro */
+    border-color: #ffcccb; /* Borda vermelha clara */
+    font-weight: bold; /* Deixa o texto em negrito para destaque */
+    animation: pulseRed 1s infinite alternate; /* Opcional: Adiciona uma animação sutil */
+}
+
+/* Mensagens de estado */
+.loading-message,
+.error-message,
+.no-data-message {
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.loading-message {
+    background-color: #e0f7fa;
+    color: #007bff;
+}
+
+.error-message {
+    background-color: #ffe0e0;
+    color: #d32f2f;
+}
+
+.no-data-message {
+    background-color: #fff3cd; /* Amarelo claro para avisos */
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+/* Responsividade Geral */
+@media (min-width: 768px) {
+    .report-container {
+        padding: 30px;
+        gap: 25px;
+    }
+    .report-container h2 {
+        font-size: 32px;
+    }
+    .task-details h3 {
+        font-size: 24px;
+    }
+    .task-details p {
+        font-size: 16px;
+    }
+    .employees-list h3 {
+        font-size: 26px;
+    }
+    .employee-card h4 {
+        font-size: 20px;
+    }
+    .employee-card p {
+        font-size: 15px;
+    }
+    .employee-details h5 {
+        font-size: 17px;
+    }
+    .employee-details li {
+        font-size: 14px;
+    }
+    .search-input-field {
+        font-size: medium;
+    }
+}
+
+@media (min-width: 1200px) {
+    .report-container {
+        padding: 40px 100px; /* Mais padding nas laterais para telas maiores */
+        gap: 30px;
+    }
+    .report-container h2 {
+        font-size: 36px;
+    }
+    .task-details h3 {
+        font-size: 26px;
+    }
+    .task-details p {
+        font-size: 17px;
+    }
+    .employees-list h3 {
+        font-size: 28px;
+    }
+    .employee-card h4 {
+        font-size: 22px;
+    }
+    .employee-card p {
+        font-size: 16px;
+    }
+    .employee-details h5 {
+        font-size: 18px;
+    }
+    .employee-details li {
+        font-size: 15px;
+    }
+    .search-input-field {
+        font-size: large;
+    }
+}

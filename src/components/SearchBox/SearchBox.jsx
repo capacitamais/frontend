@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import "./style.css"
 
-export default function SearchBox({ onSearch }) { // Adicionado o { após function SearchBox
+export default function SearchBox({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (event) => {
