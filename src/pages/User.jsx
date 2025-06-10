@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import api from "../hooks/api";
 import EntityDetailsCard from "../components/EntityDetailsCard/EntityDetailsCard";
+import ResetPassword from "../components/ResetPassword/ResetPassword";
 
 export default function User() {
   const { id } = useParams();
@@ -55,6 +56,7 @@ export default function User() {
         fieldsToDisplay={userFieldsToDisplay}
         editUrl={`/users/edit/${user._id}`}
       />
+      <ResetPassword userId={user._id}/>
     </div>
   );
 }
