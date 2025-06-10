@@ -1,0 +1,291 @@
+/* src/components/ProfileCard/ProfileCard.css */
+
+.profile-container {
+  background-color: #eef6fa; /* Cor de fundo similar ao EntityDetailsCard */
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  color: #333;
+  max-width: 900px; /* Limita a largura máxima do container */
+  margin-left: auto;
+  margin-right: auto; /* Centraliza o container na tela */
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column; /* Padrão: título em cima, botões embaixo */
+  align-items: center; /* Centraliza itens na coluna */
+  margin-bottom: 20px;
+  gap: 15px; /* Espaçamento entre o título e os botões */
+  text-align: center; /* Centraliza o texto do título */
+  border-bottom: 1px solid #cce7f5; /* Linha divisória */
+  padding-bottom: 15px;
+}
+
+.profile-title {
+  font-size: 28px;
+  color: #333;
+  margin: 0;
+  flex-grow: 1; /* Permite que o título ocupe o espaço disponível */
+  word-break: break-word;
+  min-width: 0;
+  text-align: center;
+}
+
+.profile-actions {
+  display: flex; /* Faz com que os botões fiquem lado a lado */
+  gap: 10px; /* Espaçamento entre os botões */
+  flex-wrap: wrap; /* Permite quebrar linha se não houver espaço suficiente */
+  justify-content: center; /* Centraliza os botões em telas pequenas */
+  width: 100%; /* Ocupa a largura total em telas pequenas */
+}
+
+/* Estilos para os botões "Voltar" e "Sair" */
+.profile-actions .back-button,
+.profile-actions .logout-button {
+  background-color: #9cd4ed; /* Cor do searchBox button */
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-decoration: none;
+  white-space: nowrap;
+  min-width: 100px; /* Largura mínima para os botões */
+  text-align: center;
+}
+
+.profile-actions .back-button:hover,
+.profile-actions .logout-button:hover {
+  background-color: #7abeda; /* Um tom mais escuro no hover */
+  transform: translateY(-1px);
+}
+
+.profile-actions .back-button:active,
+.profile-actions .logout-button:active {
+  background-color: #5ea1c5; /* Tom ainda mais escuro ao clicar */
+  transform: translateY(0);
+}
+
+/* Detalhes do usuário */
+.profile-details {
+  display: grid;
+  grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #f8fcff;
+  border-radius: 8px;
+  border: 1px solid #cce7f5;
+}
+
+.profile-details .detail-item {
+  font-size: 1.1em;
+  color: #444;
+  word-break: break-word;
+  padding: 5px 0;
+  border-bottom: 1px dashed #e0e0e0; /* Linha tracejada para separar itens */
+}
+
+.profile-details .detail-item:last-child {
+  border-bottom: none; /* Remove a linha do último item */
+}
+
+.profile-details .detail-item strong {
+  color: #555;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+/* Seção de redefinição de senha */
+.password-reset-section {
+  padding: 20px;
+  background-color: #f0f8ff; /* Cor de fundo diferente para a seção */
+  border-radius: 8px;
+  border: 1px solid #cce7f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.password-reset-section .section-title {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.password-reset-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.password-reset-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-reset-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.password-reset-form input[type="password"] {
+  padding: 10px;
+  border: 1px solid #cce7f5;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #ffffff;
+  color: #333;
+}
+
+.password-reset-form input[type="password"]:focus {
+  outline: none;
+  border-color: #9cd4ed;
+  box-shadow: 0 0 5px rgba(156, 212, 237, 0.5);
+}
+
+.password-reset-form .save-button {
+background-color: #9cd4ed;
+color: #ffffff;
+border: none;
+border-radius: 5px;
+padding: 10px 20px;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.2s ease;
+font-size: 0.9em;
+font-weight: bold;
+align-self: flex-start;
+min-width: 120px;
+text-decoration: none;
+white-space: nowrap;
+text-align: center;
+}
+
+.password-reset-form .save-button:hover:not(:disabled) {
+background-color: #7abeda;
+transform: translateY(-1px);
+}
+
+.password-reset-form .save-button:active:not(:disabled) {
+background-color: #5ea1c5;
+}
+
+.password-reset-form .save-button:disabled {
+background-color: #cccccc;
+cursor: not-allowed;
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #ffe0e0;
+  border: 1px solid #dc3545;
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.success-message {
+  color: #28a745;
+  background-color: #e6ffe6;
+  border: 1px solid #28a745;
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+/* Media Queries para responsividade */
+
+/* Telas médias (a partir de 768px) */
+@media (min-width: 768px) {
+  .profile-header {
+    flex-direction: row; /* Coloca itens em linha novamente */
+    justify-content: space-between; /* Espaça Título e Botões */
+    align-items: center;
+    gap: 10px;
+  }
+
+  .profile-title {
+    font-size: 32px;
+    text-align: left; /* Alinha o título à esquerda quando há espaço */
+    margin-right: 20px;
+  }
+
+  .profile-actions {
+    width: auto; /* Permite que o contêiner de botões ocupe apenas o espaço necessário */
+    justify-content: flex-end; /* Alinha os botões à direita */
+  }
+
+  .profile-actions .back-button,
+  .profile-actions .logout-button {
+    padding: 8px 15px; /* Ajusta o padding para um tamanho talvez um pouco menor, se desejar */
+    font-size: 1em; /* Tamanho da fonte um pouco maior */
+  }
+
+  .profile-details {
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas em telas maiores */
+  }
+
+  .profile-details .detail-item {
+    padding: 10px 0; /* Mais padding em telas maiores */
+  }
+
+  .password-reset-form {
+    flex-direction: row; /* Coloca labels e inputs lado a lado se houver espaço */
+    align-items: flex-end; /* Alinha os itens na parte de baixo */
+    flex-wrap: wrap; /* Permite quebrar em várias linhas se necessário */
+  }
+
+  .password-reset-form .form-group {
+    flex: 1; /* Permite que os grupos de formulário se estendam */
+    min-width: 250px; /* Largura mínima para cada grupo */
+  }
+
+  .password-reset-form .save-button {
+    align-self: flex-end; /* Alinha o botão com o fundo dos inputs */
+    margin-left: 15px; /* Espaço à esquerda do botão */
+    flex-shrink: 0; /* Impede que o botão encolha */
+  }
+}
+
+/* Telas grandes (a partir de 1200px) */
+@media (min-width: 1200px) {
+  .profile-container {
+    padding: 30px;
+  }
+
+  .profile-title {
+    font-size: 36px;
+  }
+
+  .profile-actions .back-button,
+  .profile-actions .logout-button {
+    padding: 12px 25px; /* Padding maior para botões em telas grandes */
+    font-size: 1.1em;
+  }
+
+  .profile-details {
+    grid-template-columns: repeat(3, 1fr); /* Três colunas em telas muito grandes */
+  }
+}
+
+/* Mensagem de Permissão Negada (se você quiser estilizar no nível mais alto ou na página) */
+.permission-denied-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: #dc3545;
+  padding: 20px;
+  margin: 20px;
+  background-color: #ffe0e0;
+  border-radius: 8px;
+  border: 1px solid #dc3545;
+}
