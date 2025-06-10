@@ -1,12 +1,44 @@
-# React + Vite
+# Como rodar o projeto (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Siga os passos abaixo para configurar e executar o projeto localmente:
 
-Currently, two official plugins are available:
+## 1. Clone o repositório
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+git clone https://github.com/capacitamais/frontend.git
+cd frontend
+```
 
-## Expanding the ESLint configuration
+## 2. Crie o arquivo `.env`
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Na raiz do projeto, crie um arquivo chamado `.env` e adicione a seguinte variável:
+
+```env
+VITE_BACKEND_API='https://capacitamais.onrender.com'
+```
+
+## 3. Instale as dependências
+
+Execute o seguinte comando para instalar as bibliotecas necessárias:
+
+```bash
+npm install
+```
+
+## 4. Execute o projeto
+
+Rode o projeto em modo de desenvolvimento com:
+
+```bash
+npm run dev
+```
+
+A aplicação será aberta automaticamente no navegador, geralmente em:
+
+```
+http://localhost:5173
+```
+
+---
+
+> 💡 Certifique-se de que o backend esteja funcionando corretamente e acessível pela URL configurada no `.env`.
