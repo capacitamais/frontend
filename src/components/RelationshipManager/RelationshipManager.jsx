@@ -36,7 +36,7 @@ export default function RelationshipManager({
         setLoading(true);
         setError(null);
         try {
-            const allItemsRes = await api.get(availableItemsApiUrl);
+            const allItemsRes = await api.get(`${availableItemsApiUrl}/?isActive=true`);
             const formattedAllItems = allItemsRes.data.map((item) => ({
                 value: item._id,
                 label:
