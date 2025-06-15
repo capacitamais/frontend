@@ -10,7 +10,7 @@ export default function Activities() {
 
   const fetchActivities = (searchFilter = "") => {
     api
-      .get(`/activities?name=${searchFilter}`)
+      .get(`/activities?name=${searchFilter}&isActive=true`)
       .then((response) => {
         const mappedActivities = response.data.map((activity) => ({
           id: activity._id,

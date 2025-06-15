@@ -11,7 +11,7 @@ export default function Trainings() {
   const fetchTrainings = (searchFilter = '') => {
     // A função agora aceita um filtro de pesquisa
     api
-      .get(`/trainings?titleOrTag=${searchFilter}`) // Passa o filtro na query string
+      .get(`/trainings?titleOrTag=${searchFilter}&isActive=true`) // Passa o filtro na query string
       .then((response) => {
         const mappedTrainings = response.data.map((training) => ({
           id: training._id,
