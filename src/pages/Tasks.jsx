@@ -10,7 +10,7 @@ export default function Tasks() {
 
   const fetchTasks = (searchFilter = "") => {
     api
-      .get(`/tasks?name=${searchFilter}`)
+      .get(`/tasks?name=${searchFilter}&isActive=true`)
       .then((response) => {
         const mappedTasks = response.data.map((task) => ({
           id: task._id,

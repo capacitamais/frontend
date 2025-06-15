@@ -9,7 +9,7 @@ export default function Users() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const fetchUsers = (searchFilter = "") => {
-    api.get(`/users?nameOrRegistration=${searchFilter}`).then((response) => {
+    api.get(`/users?nameOrRegistration=${searchFilter}&isActive=true`).then((response) => {
       const mappedUsers = response.data.map((user) => ({
         id: user._id,
         name: user.name,

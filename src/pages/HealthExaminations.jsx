@@ -10,7 +10,7 @@ export default function HealthExaminations() {
 
   const fetchHealthExaminations = (searchFilter = "") => {
     api
-      .get(`/health-examinations?title=${searchFilter}`)
+      .get(`/health-examinations?title=${searchFilter}&isAtcive=true`)
       .then((response) => {
         const mappedExams = response.data.map((healthExamination) => ({
           id: healthExamination._id,

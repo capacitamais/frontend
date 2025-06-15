@@ -9,7 +9,7 @@ export default function Employees() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const fetchEmployees = (searchFilter = "") =>{
-    api.get(`/employees?nameOrRegistration=${searchFilter}`).then((response) => {
+    api.get(`/employees?nameOrRegistration=${searchFilter}&isActive=true`).then((response) => {
         const mappedEmployees = response.data.map((employee) => ({
             id: employee._id,
             name: employee.name,
